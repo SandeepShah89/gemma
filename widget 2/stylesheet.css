@@ -1,0 +1,44 @@
+.box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 290px;
+    height: 130px;
+    margin: 15px;
+    box-shadow: 3px 6px 3px 6px grey
+}
+
+.hea {
+    padding: 25px;
+}
+
+#header {
+    text-align: left;
+    background: white;
+    color: #2d2e30;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#wto_widget2_thumbsdown {
+    position: fixed;
+    top: 70px;
+    right: 1300px;
+    width: 54px; 
+    height: 54px;
+}
+ 
+#wto_widget2_thumbsup {
+    position: absolute;
+    top: 53px;
+    left: 70px;
+    width: 54px; 
+    height: 54px;
+}
+
+.darkmode {
+    background-color:#1A1D21;
+    color:  #eee;
+}
