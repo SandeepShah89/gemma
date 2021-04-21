@@ -1,7 +1,7 @@
 var elm = document.createElement('div');
 document.getElemenstByTagName('body')[0].appendChild(elm);
 elm.outerHTML = ' \
-<link rel="stylesheet" href="C:\Users\gemma\Desktop\Web Trends\widget 2\stylesheet.css">\
+<link rel="stylesheet" href="C:\\Users\\gemma\\Desktop\\Web Trends\\widget 2\\stylesheet.css">\
 <div class="box">\
 <div class="hea">\
     <header id="header"> How was your experience today?</header><br>\
