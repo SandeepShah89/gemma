@@ -438,15 +438,15 @@ window.s_widgets = {
         { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#F3ECEC' },
         'HEADER',
         { type: 'text', id: 'header', name: 'header', label: 'Header Text', value: 'Dont miss out on our new drops and promotions! Turn on notification:'},
-        { type: 'color', id: 'headercolor', name: 'headercolor', label: 'Header Text Colour', value: 'black' },
-        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: ' Header Font Size', value: '10px' },
+        { type: 'color', id: 'headercolor', name: 'headercolor', label: 'Header Text Colour', value: '#000000' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: ' Header Font Size', value: '15px' },
         'CONTENT',
-        { type: 'color', id: 'color', name: 'color', label: 'Text Colour', value: 'black' },
-        { type: 'text', id: 'textfontsize', name: 'textfontsize', label: 'Font Size', value: '10px' },
+        { type: 'color', id: 'color', name: 'color', label: 'Text Colour', value: '#000000' },
+        { type: 'text', id: 'textfontsize', name: 'textfontsize', label: 'Font Size', value: '15px' },
         { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: 'To turn on notification on:<br> 1. <strong>Click on the icon </strong>like shown in the example.<br> 2.<strong> Allow</strong> notification.' },
         'BUTTON',
         { type: 'text', id: 'buttonText', name: 'buttonText', label: 'Button Text', value: 'OK, GOT IT.' },
-        { type: 'color', id: 'buttonTextColor', name: 'buttonTextColor', label: 'Button Text Colour', value: 'white' },
+        { type: 'color', id: 'buttonTextColor', name: 'buttonTextColor', label: 'Button Text Colour', value: '#F3ECEC' },
         { type: 'color', id: 'buttonBackColor', name: 'buttonBackColor', label: 'Button Background Colour', value: '#EE1B2E' },
         { type: 'text', id: 'buttonfontsize', name: 'buttonfontsize', label: 'Button Font Size', value: '13px' }
     ],
@@ -486,7 +486,7 @@ var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style
 </div> \
 <div style="padding: 10px;"> \
    <header style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
-   <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +' background-color: '+ settings.bgcol +' " >'+ settings.content +'</p> \
+   <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +' background-color: '+; settings.bgcol +'; " >'+ settings.content +'</p> \
    <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color:'+ settings.buttonTextColor+'; background-color:'+ settings.buttonBackColor +' ; text-align: center; position: absolute; right: 10px; border-radius: 2px; height: 45px; width: 110px;">\
    '+ settings.buttonText +'</button> \
 </div>\';
