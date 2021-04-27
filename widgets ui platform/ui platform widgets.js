@@ -521,28 +521,21 @@ el.outerHTML = elhtml;
 //!-##${widget.widgetType}--START##
 // ${JSON.stringify(widget)}
 (function(){
-
 var settings = {
     header: '${widget.header.replace('\'', '\\\'')}', // text in header
     headerfontsize: '${widget.headerfontsize}', // header font size 
     headercolor: '${widget.headercolor}', // header colour 
     bgcol: '${widget.bgcol}' // background colour  
 };
-
 var elid = 'wto-widget--Icon_Review_Box--${uniqueID}';
-
 // Remove if exists - ensures no duplicates
 document.querySelectorAll('.wto-widget--Icon_Review_Box').forEach(function(node){
 node.parentNode.removeChild(node);
 });
-
-
 var body = document.getElementsByTagName('body')[0];
 var el = document.createElement('div');
-
 body.insertAdjacentElement('afterBegin', el);
-
-var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style="z-index: 9999; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 325px; height: 140px; margin: 15px; box-shadow: 3px 6px 3px 6px grey">\
+var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style="z-index: 9999; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 310px; height: 140px; margin: 15px; box-shadow: 3px 6px 3px 6px grey">\
 <div class="hea" style="padding: 25px;">\
     <header id="header" style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">\
     '+ settings.header +'</header><br>\
@@ -614,9 +607,7 @@ var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style=
 </svg>\
 </div> \
 </div>\';
-
 el.outerHTML = elhtml;
-
     var h = document.getElementById(elid).offsetHeight;
     body.style.marginTop = h + 'px';
     
@@ -626,8 +617,6 @@ el.outerHTML = elhtml;
                 return str;
             }
         },
-        
-        
         
       'widget 3': {
     friendlyName: 'Widget 3',
@@ -693,7 +682,7 @@ var elhtml = '\ <div id="'+ elid +'" class="wto-widget--quote_box" style="z-inde
     <path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z" class="">\
     </path>\
 </svg>\
-<button id="wto_widget3_see_more" style="   font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color: '+ settings. buttonBackColor +'; text-align: center; position: absolute; bottom: 10px; right: 25px; border-radius: 10px; height: 25px; width: 100px;">'+ settings.buttonText +'</button>\
+<button id="wto_widget3_see_more" style="font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color: '+ settings. buttonBackColor +'; text-align: center; position: absolute; bottom: 10px; right: 25px; border-radius: 10px; height: 25px; width: 100px;">'+ settings.buttonText +'</button>\
 </div> \';
 
 el.outerHTML = elhtml;
