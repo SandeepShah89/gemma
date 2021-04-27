@@ -461,12 +461,12 @@ window.s_widgets = {
 (function(){
 var settings = {
     header: '${widget.header.replace('\'', '\\\'')}', // text in header
-    headerfontSize: '${widget.headerfontsize}', // header font size 
+    headerfontsize: '${widget.headerfontsize}', // header font size 
     headercolor: '${widget.headercolor}', // header colour 
     content: '${widget.content.replace('\'', '\\\'')}', // content txt
     bgcol: '${widget.bgcol}', // background colour 
     color: '${widget.color}', // text colour 
-    textfontSize: '${widget.textfontsize}', // content font size 
+    textfontsize: '${widget.textfontsize}', // content font size 
     buttonText : '${widget.buttonText.replace('\'', '\\\'')}', //button txt
     buttonTextColor: '${widget.buttonTextColor}', //button txt colour
     buttonBackColor: '${widget.buttonBackColor}', //button colour
@@ -480,13 +480,13 @@ node.parentNode.removeChild(node);
 var body = document.getElementsByTagName('body')[0];
 var el = document.createElement('div');
 body.insertAdjacentElement('afterBegin', el);
-var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style="position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 286px; height: 450px; margin: 15px;  box-shadow: 3px 6px 3px 6px grey;"> \
+var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style="position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 286px; height: 430px; margin: 15px;  box-shadow: 3px 6px 3px 6px grey;"> \
 <div id="headerimg"> \
    <header> <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/headerimgv1.png"> </header> \
 </div> \
 <div style="padding: 10px;"> \
-   <header style=" text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
-   <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +' background-color: '+ settings.bgcil +' " >'+ settings.content +'</p> \
+   <header style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
+   <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +' background-color: '+ settings.bgcol +' " >'+ settings.content +'</p> \
    <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color:'+ settings.buttonTextColor+'; background-color:'+ settings.buttonBackColor +' ; text-align: center; position: absolute; right: 10px; border-radius: 2px; height: 45px; width: 110px;">\
    '+ settings.buttonText +'</button> \
 </div>\';
@@ -524,7 +524,7 @@ el.outerHTML = elhtml;
 
 var settings = {
     header: '${widget.header.replace('\'', '\\\'')}', // text in header
-    headerfontize: '${widget.headerfontsize}', // header font size 
+    headerfontsize: '${widget.headerfontsize}', // header font size 
     headercolor: '${widget.headercolor}', // header colour 
     bgcol: '${widget.bgcol}' // background colour  
 };
@@ -544,7 +544,7 @@ body.insertAdjacentElement('afterBegin', el);
 
 var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style="z-index: 9999; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 325px; height: 140px; margin: 15px; box-shadow: 3px 6px 3px 6px grey">\
 <div class="hea" style="padding: 25px;">\
-    <header id="header" style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headerColor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">\
+    <header id="header" style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">\
     '+ settings.header +'</header><br>\
     <svg id="wto_widget2_thumbsup" viewBox="0 0 128 128" style="position: absolute; top: 53px; left: 70px; width: 54px; height: 54px;" xmlns="http://www.w3.org/2000/svg">\
     <radialGradient id="e" cx="51.77" cy="31.401" r="87.039" gradientTransform="matrix(-.0021809 1 -.7873 -.001717 76.604 -20.315)" gradientUnits="userSpaceOnUse">\
@@ -688,7 +688,7 @@ var elhtml = '\ <div id="'+ elid +'" class="wto-widget--quote_box" style="z-inde
     <path fill="currentColor" d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z" class="">\
     </path>\
 </svg>\
-<p id="content"  style=" text-align: center; color:'+ settings.color +'; font-family: sans-serif; font-size: '+ settings.textfontsize +'; font-weight: bold; font-style: italic; width: 185px; height: 155px; -ms-transform: skewY(-18deg); /* IE 9 */ transform: skewY(-18deg);  border-top: 3px solid '+ settings.foregroundcolor +'; border-bottom: 3px solid '+ settings.foregroundcolor +'; margin: 2px; padding: 12px;  position: fixed; bottom: 65px; right: 100px">'+ settings.content +'</p>\
+<p id="content"  style="text-align: center; color:'+ settings.color +'; font-family: sans-serif; font-size: '+ settings.textfontsize +'; font-weight: bold; font-style: italic; width: 185px; height: 155px; -ms-transform: skewY(-18deg); /* IE 9 */ transform: skewY(-18deg);  border-top: 3px solid '+ settings.foregroundcolor +'; border-bottom: 3px solid '+ settings.foregroundcolor +'; margin: 2px; padding: 12px;  position: fixed; bottom: 65px; right: 100px">'+ settings.content +'</p>\
 <svg id="wto_widget3_close_quote" style=" position: fixed; bottom: 77px; right: 110px; width: 30px; height: 25px; -ms-transform: skewY(-18deg); /* IE 9 */ transform: skewY(-18deg); background-color: '+ settings.bgcol+'; z-index: 9999; color: '+ settings.foregroundcolor +';" saria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-quote-right fa-w-16 fa-2x">\
     <path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z" class="">\
     </path>\
