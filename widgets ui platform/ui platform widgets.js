@@ -428,8 +428,8 @@ window.s_widgets = {
             fields: [],
             js_build: function(widget){}
         },
-       
-        'widget 1': {
+        
+   'widget 1': {
     friendlyName: 'Widget 1',
     description: 'A small pop up box which gives user option to sign up for notifications',
     fields: [
@@ -491,14 +491,19 @@ var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style
    '+ settings.buttonText +'</button></p> \
 </div> \
 </div>\';
-el.outerHTML = elhtml;   
+el.outerHTML = elhtml;
+document.getElementById("'+ elid +'").onclick = function(){
+    var elmToRemove = this.parentNode.parentNode;
+    elmToRemove.parentNode.removeChild(elmToRemove);
+        return false;
+        };  
 })();
 //!-##${widget.widgetType}--END##`;
                 
                 return str;
             }
         },
-        
+            
         'widget 2': {
     friendlyName: 'Widget 2',
     description: 'Pop up with thumb icons for user to review. (Like/Dislike)',
@@ -605,15 +610,26 @@ var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style=
 </svg>\
 </div> \
 </div>\';
-el.outerHTML = elhtml;  
+el.outerHTML = elhtml;
+//closes popup by clicking thumb up 
+document.getElementById('wto_widget2_thumbsup').addEventListener('click',function(){
+    var elmToRemove = this.parentNode.parentNode;
+    elmToRemove.parentNode.removeChild(elmToRemove);
+        return false;
+});
+//closes popup by clicking thumb down
+document.getElementById('wto_widget2_thumbsdown').addEventListener('click',function(){
+    var elmToRemove = this.parentNode.parentNode;
+    elmToRemove.parentNode.removeChild(elmToRemove);
+        return false;
+});
 })();
 //!-##${widget.widgetType}--END##`;
                 
                 return str;
             }
         },
-        
-                  
+             
       'widget 3': {
     friendlyName: 'Widget 3',
     description: 'Quote pop up with button',
@@ -673,7 +689,7 @@ var elhtml = '\ <div id="'+ elid +'" class="wto-widget--quote_box" style="z-inde
 </svg>\
 <button id="wto_widget3_see_more" style="font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color: '+ settings. buttonBackColor +'; text-align: center; position: absolute; bottom: 15px; right: 25px; border-radius: 10px; height: 25px; width: 100px;">'+ settings.buttonText +'</button>\
 </div> \';
-el.outerHTML = elhtml;    
+el.outerHTML = elhtml;
 })();
 //!-##${widget.widgetType}--END##`;
                 
