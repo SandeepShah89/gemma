@@ -428,8 +428,8 @@ window.s_widgets = {
             fields: [],
             js_build: function(widget){}
         },
-        
-   'widget 1': {
+       
+        'widget 1': {
     friendlyName: 'Widget 1',
     description: 'A small pop up box which gives user option to sign up for notifications',
     fields: [
@@ -480,28 +480,25 @@ node.parentNode.removeChild(node);
 var body = document.getElementsByTagName('body')[0];
 var el = document.createElement('div');
 body.insertAdjacentElement('afterBegin', el);
-var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style="z-index: 9999; line-height:2.0em; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 286px; height: 430px; margin: 15px;  box-shadow: 3px 6px 3px 6px grey;"> \
+var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style="z-index: 9999; line-height:2.0em; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 286px; margin: 15px;  box-shadow: 3px 6px 3px 6px grey;"> \
 <div id="headerimg"> \
    <header> <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/headerimgv1.png"> </header> \
 </div> \
-<div style="padding: 10px;"> \
+<div style="padding: 10px; margin:0;"> \
    <header style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
    <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +'; background-color: '+ settings.bgcol +'; " >'+ settings.content +'</p> \
-  <p style="text-align: right;"> <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize +'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color:'+ settings.buttonBackColor +'; text-align: center; border-radius: 2px; height: 45px; width: 110px;"> \
+  <p style="text-align: right; padding: 0px; margin:0;"> <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize +'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color:'+ settings.buttonBackColor +'; text-align: center; border-radius: 2px; height: 45px; width: 110px;"> \
    '+ settings.buttonText +'</button></p> \
 </div> \
 </div>\';
-el.outerHTML = elhtml;
-    var h = document.getElementById(elid).offsetHeight;
-    body.style.marginTop = h + 'px';
-    
+el.outerHTML = elhtml;   
 })();
 //!-##${widget.widgetType}--END##`;
                 
                 return str;
             }
         },
-            
+        
         'widget 2': {
     friendlyName: 'Widget 2',
     description: 'Pop up with thumb icons for user to review. (Like/Dislike)',
@@ -608,10 +605,7 @@ var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style=
 </svg>\
 </div> \
 </div>\';
-el.outerHTML = elhtml;
-    var h = document.getElementById(elid).offsetHeight;
-    body.style.marginTop = h + 'px';
-    
+el.outerHTML = elhtml;  
 })();
 //!-##${widget.widgetType}--END##`;
                 
@@ -679,10 +673,7 @@ var elhtml = '\ <div id="'+ elid +'" class="wto-widget--quote_box" style="z-inde
 </svg>\
 <button id="wto_widget3_see_more" style="font-family: sans-serif; font-size: '+ settings.buttonfontsize+'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color: '+ settings. buttonBackColor +'; text-align: center; position: absolute; bottom: 15px; right: 25px; border-radius: 10px; height: 25px; width: 100px;">'+ settings.buttonText +'</button>\
 </div> \';
-el.outerHTML = elhtml;
-    var h = document.getElementById(elid).offsetHeight;
-    body.style.marginTop = h + 'px';
-    
+el.outerHTML = elhtml;    
 })();
 //!-##${widget.widgetType}--END##`;
                 
