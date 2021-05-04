@@ -1,71 +1,121 @@
 window.s_widgets = {
     types: {
-        "hello-bar": {
-            friendlyName: 'Hello Bar',
-            description: 'A small bar across the top of your page. Useful for announcements, guidance, offers, etc.',
-            fields: [
-                // { type: 'onpageposition', id: 'text', name: 'text', label: 'text' }, // placeholder so i know the markup. 
-                
-                { type: 'text', id: 'text', name: 'text', label: 'text', value: 'Black Friday sale is now on! Upto 50% off across the store.' },
-                { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#242424' },
-                { type: 'color', id: 'color', name: 'color', label: 'Text Colour', value: '#FFFFFF' },
-                { type: 'text', id: 'fontsize', name: 'fontsize', label: 'Font Size', value: '14px' },
-                // { type: 'checkbox', id: 'makesticky', name: 'makesticky', label: 'Make sticky and push page down?', value: false },
-                // { type: 'checkbox', id: 'haveclosebtn', name: 'haveclosebtn', label: 'Include close button?', value: true },
-                { type: 'text', id: 'existingNavSelector', name: 'existingNavSelector', label: 'Existing Nav? Selector:', value: '' },
-                { type: 'text', id: 'existingNavMethod', name: 'existingNavMethod', label: 'Existing Nav? Method:', value: '' }
-            ],
+    "hello-bar": {
+        friendlyName: 'Hello Bar',
+        description: 'A small bar across the top of your page. Useful for announcements, guidance, offers, etc.',
+        fields: [
+             'CONTENT',
+            { type: 'text', id: 'text', name: 'text', label: 'text', value: 'Black Friday sale is now on! Upto 50% off across the store.' },
+            { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#242424' },
+            { type: 'color', id: 'color', name: 'color', label: 'Text Colour', value: '#FFFFFF' },
+            { type: 'text', id: 'fontsize', name: 'fontsize', label: 'Font Size', value: '14px' },
+            //'CHECKBOXES',
+            // { type: 'checkbox', id: 'makesticky', name: 'makesticky', label: 'Make sticky and push page down?', value: false },
+            // { type: 'checkbox', id: 'haveclosebtn', name: 'haveclosebtn', label: 'Include close button?', value: true },
+            'NAVS',
+            { type: 'text', id: 'existingNavSelector', name: 'existingNavSelector', label: 'Existing Nav? Selector:', value: '' },
+            { type: 'text', id: 'existingNavMethod', name: 'existingNavMethod', label: 'Existing Nav? Method:', value: '' },
             
-            js_build: function(widget){
-                var uniqueID = Date.now();
-                var str = `
-                
+            'COUNTDOWN TIMER',
+            { type: 'checkbox', id: 'useCountdown', name: 'useCountdown', label: 'Include Countdown?', value: false }, 
+            { type: 'datetime-local', id: 'myDate', name: 'myDate', step:'2', label: 'End date & time', value: 'yyyy/mm/dd hh:mm:ss' }
+
+        ],
+        
+        js_build: function(widget){
+            
+            console.log(widget);
+            
+            var uniqueID = Date.now();
+            var str = `
+            
 //!-##${widget.widgetType}--START##
 // ${JSON.stringify(widget)}
 // Create a Hello Bar
 (function(){
-    
-    var settings = {
-        text: '${widget.text.replace('\'', '\\\'')}', // text in hello bar 
-        bgcol: '${widget.bgcol}', // background colour 
-        color: '${widget.color}', // text colour 
-        fontSize: '${widget.fontsize}', // font size 
-        existingNavToMoveDown: '${widget.existingNavSelector}', // If you have a fixed-position nav, use this to move it down 
-        existingNav_method: '${widget.existingNavMethod}' // How you want it moved down
+
+var settings = {
+	myDate: '${widget.myDate}',
+    text: '${widget.text.replace('\'', '\\\'')}', // text in hello bar 
+    bgcol: '${widget.bgcol}', // background colour 
+    color: '${widget.color}', // text colour 
+    fontSize: '${widget.fontsize}', // font size 
+    existingNavToMoveDown: '${widget.existingNavSelector}', // If you have a fixed-position nav, use this to move it down 
+    existingNav_method: '${widget.existingNavMethod}' // How you want it moved down
+};
+
+var elid = 'wto-widget--hellobar--${uniqueID}';
+
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--hellobar').forEach(function(node){
+    node.parentNode.removeChild(node);
+});
+
+// Create hello bar
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+
+body.insertAdjacentElement('afterBegin', el);
+
+var elHTML = '<div id="'+ elid +'" class="wto-widget--hellobar" style="padding: 10px; width: 100%; background: '+ settings.bgcol +'; color: '+ settings.color +'; z-index: 99999999; text-align: center; line-height: '+ (parseInt(settings.fontSize)*1.5) +'px; font-size: '+ settings.fontSize +'; top: 0; left: 0; position: fixed;">' + settings.text`;
+
+if(widget.useCountdown){
+    str += ` + '<span id="'+ elid +'--clock" style="display: inline-block !important; margin-left: 10px !important; font-weight: 600 !important;"></span><span id="'+ elid +'--message"></span>'`;
+}
+
+str += `+ '</div>';
+el.outerHTML = elHTML;
+
+var h = document.getElementById(elid).offsetHeight;
+body.style.marginTop = h + 'px';
+
+if(settings.existingNavToMoveDown && settings.existingNav_method){
+    var el = document.querySelector(settings.existingNavToMoveDown);
+    el.style[settings.existingNav_method] = h + 'px';
+}
+
+var getTimeRemaining = function(endtime) {
+    var t = Date.parse(endtime) - (new Date()).getTime();
+    console.log(t);
+
+    var seconds = Math.floor( (t/1000) % 60 );
+    var minutes = Math.floor( (t/(1000*60)) % 60);
+    var hours = Math.floor( (t/(1000*60*60)) % 24);
+    var days = Math.floor( t/(1000*60*60*24) );
+
+    return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
     };
-    
-    var elid = 'wto-widget--hellobar--${uniqueID}';
-    
-    // Remove if exists - ensures no duplicates
-    document.querySelectorAll('.wto-widget--hellobar').forEach(function(node){
-        node.parentNode.removeChild(node);
-    });
-    
-    // Create hello bar
-    var body = document.getElementsByTagName('body')[0];
-    var el = document.createElement('div');
-    
-    body.insertAdjacentElement('afterBegin', el);
-    
-    var elhtml = '<div id="'+ elid +'" class="wto-widget--hellobar" style="padding: 10px; width: 100%; background: '+ settings.bgcol +'; color: '+ settings.color +'; z-index: 99999999; text-align: center; line-height: '+ (parseInt(settings.fontSize)*1.5) +'px; font-size: '+ settings.fontSize +'; top: 0; left: 0; position: fixed;">' + settings.text + '</div>';
-    
-    el.outerHTML = elhtml;
-    
-    var h = document.getElementById(elid).offsetHeight;
-    body.style.marginTop = h + 'px';
-    
-    if(settings.existingNavToMoveDown && settings.existingNav_method){
-        var el = document.querySelector(settings.existingNavToMoveDown);
-        el.style[settings.existingNav_method] = h + 'px';
-    }
-    
+}
+
+var initializeClock = function() {
+    var timer = document.getElementById(elid +'--clock');
+    var updateTimer = function(){
+        var t = getTimeRemaining(settings.myDate);
+        if(t.total<=0){
+            clearInterval(countdownTimer);
+            document.getElementById(elid+"--message").innerHTML = "ENDED";
+            timer.innerHTML.style.display = "none";
+        } else {
+            timer.innerHTML = t.days + ' ' + t.hours + ':' + t.minutes + ':' + t.seconds;
+        }
+    };
+    updateTimer();
+
+    var intvl = setInterval(updateTimer, 1000);
+};
+initializeClock();
+
 })();
 //!-##${widget.widgetType}--END##`;
-                
-                return str;
-            }
-        },
-        
+            
+            return str;
+        }
+    },
         /*"hello-bar-with-countdown": {
             friendlyName: 'Hello Bar with countdown',
             description: 'A hello bar, similar to the one on the left, but with a live countdown timer.',
@@ -485,14 +535,14 @@ var elhtml = '\ <div  id="'+ elid +'" class="wto-widget--notification_box" style
    <header> <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/headerimgv1.png"> </header> \
 </div> \
 <div style="padding: 10px; margin:0;"> \
-   <header style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
-   <p style="font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +'; background-color: '+ settings.bgcol +'; " >'+ settings.content +'</p> \
-  <p style="text-align: right; padding: 0px; margin:0;"> <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize +'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color:'+ settings.buttonBackColor +'; text-align: center; border-radius: 2px; height: 45px; width: 110px;"> \
+   <header style="line-height:2.0em; text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">'+ settings.header +'</header> \
+   <p style="line-height:2.0em; font-family: sans-serif; font-size: '+ settings.textfontsize +'; text-align: left; color: '+ settings.color +'; background-color: '+ settings.bgcol +'; " >'+ settings.content +'</p> \
+  <p style="line-height:2.0em; text-align: right; padding: 0px; margin:0;"> <button id="not"; style="font-family: sans-serif; font-size: '+ settings.buttonfontsize +'; font-weight: bold; color: '+ settings.buttonTextColor +'; background-color:'+ settings.buttonBackColor +'; text-align: center; border-radius: 2px; height: 45px; width: 110px;"> \
    '+ settings.buttonText +'</button></p> \
 </div> \
 </div>\';
 el.outerHTML = elhtml;
-document.getElementById("'+ elid +'").onclick = function(){
+document.getElementById("not").onclick = function(){
     var elmToRemove = this.parentNode.parentNode;
     elmToRemove.parentNode.removeChild(elmToRemove);
         return false;
@@ -761,7 +811,9 @@ el.outerHTML = elhtml;
             else if(field.type == "textarea"){
                 str += `<div><label for="${field.id}">${field.label}:</label>${note}<textarea id="${field.id}" name="${field.name}">${field.value.replace(/\<br\s?\/?\>/g, '\n')}</textarea></div>`;
             }
-            
+             else if(field.type == "datetime-local"){
+                str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="${field.type}" step="${field.step}" id="${field.id}" name="${field.name}" value="${field.value}"></div>`;
+            }
             else if(field.type == "color"){
                 str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="color" id="${field.id}" name="${field.name}" value="${field.value}" /><label for="${field.id}" style="vertical-align: middle;"></label></div>`;
             }
@@ -969,7 +1021,7 @@ var makeAlignmentGrid = function(name){
             #s-widgets-close { position: absolute; top: 20px; right: 20px; font-weight: 300; font-size: 20px; line-height: 20px; cursor: pointer; }
             .s-widgets-formgroup { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
             #s-widgets label { display: block; font-weight: 300; text-transform: uppercase; }
-            #s-widgets input[type="text"], #s-widgets input[type="number"], #s-widgets select, #s-widgets textarea { color: white; width: 100%; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); }
+            #s-widgets input[type="text"], #s-widgets input[type="datetime-local"], #s-widgets input[type="number"], #s-widgets select, #s-widgets textarea { color: white; width: 100%; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); }
             #s-widgets input[type="date"], #s-widgets input[type="time"] { color: white; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); margin-right: 10px; }
             #s-widgets input::-webkit-calendar-picker-indicator { filter: invert(1); }
             #s-widgets textarea { min-height: 100px; width: 100% !important; }
@@ -1051,7 +1103,7 @@ var makeAlignmentGrid = function(name){
     },
     
     apply: function(shouldDelete){
-        var sel = 'select, input[type="text"], input[type="number"], input[type="hidden"], input[type="checkbox"], input[type="radio"]:checked, input[type="color"], input[type="range"], textarea';
+        var sel = 'select, input[type="text"], input[type="datetime-local"], input[type="number"], input[type="hidden"], input[type="checkbox"], input[type="radio"]:checked, input[type="color"], input[type="range"], textarea';
         var parent = document.getElementById('s-widgets--fields');
         
         var o = {};
