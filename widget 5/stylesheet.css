@@ -1,0 +1,310 @@
+.outterbox {
+    background-color: #FFFFFF;
+    width: 350px;
+    height: 350px;
+    margin: 10px;
+    padding: 15px;
+    border-style: inset;
+    position: fixed;
+    top: 135px;
+    left: 281px;
+    z-index: 9999;
+}
+
+.innerbox {
+    background-color: #F46C78;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    padding: 15px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.middle {
+    background-color: #FFE2DF;
+    width: 285px;
+    height: 130px;
+    margin: 3px;
+    padding: 5px;
+    position: fixed;
+    z-index: 9999;
+}
+
+#email {
+    position: fixed;
+    top: 443px;
+    border: 5px solid #FF8299;
+    width: 221px;
+    height: 36px;
+    left: 303px;
+    z-index: 9999;
+}
+
+button {
+    position: fixed;
+    top: 443px;
+    width: 142px;
+    height: 36px;
+    left: 519px;
+    background-color: #FF8299;
+    border-color: #FF8299;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+img {
+    position: fixed;
+    border-radius: 6px;
+    width: 594px;
+    height: 459px;
+    top: 115px;
+    left: 615px;
+}
+
+p {
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 36px;
+    font-family: sans-serif;
+    text-align: center;
+    background-image: linear-gradient(to left, violet, indigo, blue);
+    -webkit-background-clip: text;
+    color: transparent;
+    z-index: 9999;
+}
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    font-family: sans-serif;
+    color: violet;
+    z-index: 9999;
+}
+
+#close {
+    position: fixed;
+    z-index: 9999;
+    top: 123px;
+    left: 653px;
+    color: #F46C78;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+.outterbox {
+    background-color: #FFFFFF;
+    width: 350px;
+    height: 350px;
+    margin: 10px;
+    padding: 15px;
+    border-style: inset;
+    position: fixed;
+    top: 135px;
+    left: 26px;
+    z-index: 9999;
+}
+
+.innerbox {
+    background-color: #F46C78;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    padding: 15px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.middle {
+    background-color: #FFE2DF;
+    width: 285px;
+    height: 130px;
+    margin: 3px;
+    padding: 5px;
+    position: fixed;
+    z-index: 9999;
+}
+
+#email {
+    position: inherit;
+    top: 443px;
+    border: 5px solid #FF8299;
+    width: 221px;
+    height: 36px;
+    left: 48px;
+    z-index: 9999;
+}
+
+button {
+    position: inherit;
+    top: 443px;
+    width: 142px;
+    height: 36px;
+    left: 268px;
+    background-color: #FF8299;
+    border-color: #FF8299;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+img {
+    position: fixed;
+    border-radius: 6px;
+    width: 496px;
+    height: 459px;
+    top: 115px;
+    left: 376px;
+}
+
+p {
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 36px;
+    font-family: sans-serif;
+    text-align: center;
+    background-image: linear-gradient(to left, violet, indigo, blue);
+    -webkit-background-clip: text;
+    color: transparent;
+    z-index: 9999;
+}
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    font-family: sans-serif;
+    color: violet;
+    z-index: 9999;
+}
+
+#close {
+    position: inherit;
+    z-index: 9999;
+    top: 123px;
+    left: 397px;
+    color: #F46C78;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+}
+
+@media all and (max-width: 767px) {
+.outterbox {
+    background-color: #FFFFFF;
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    padding: 15px;
+    border-style: inset;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.innerbox {
+    background-color: #F46C78;
+    width: 350px;
+    height: 354px;
+    margin: 10px;
+    padding: 15px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.middle {
+    background-color: #FFE2DF;
+    width: 333px;
+    height: 158px;
+    margin: 3px;
+    padding: 5px;
+    position: fixed;
+    z-index: 9999;
+}
+
+#email {
+    position: inherit;
+    top: 350px;
+    border: 5px solid #FF8299;
+    width: 263px;
+    height: 42px;
+    left: 23px;
+    z-index: 9999;
+}
+
+button {
+    position: inherit;
+    top: 350px;
+    width: 144px;
+    height: 42px;
+    left: 285px;
+    background-color: #FF8299;
+    border-color: #FF8299;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+img {
+    display: none;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 39px;
+    font-family: sans-serif;
+    text-align: center;
+    background-image: linear-gradient(to left, violet, indigo, blue);
+    -webkit-background-clip: text;
+    color: transparent;
+    z-index: 9999;
+}
+
+h2 {
+    text-align: center;
+    font-size: 33px;
+    font-family: sans-serif;
+    color: violet;
+    z-index: 9999;
+}
+
+#close {
+    position: inherit;
+    z-index: 9999;
+    top: -6px;
+    left: 422px;
+    color: #F46C78;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+}

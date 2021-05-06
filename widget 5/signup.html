@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="C:\Users\gemma\Desktop\Web Trends\widget 5\stylesheet.css">
+<div class="backimg">
+    <img src="C:\Users\gemma\Desktop\Web Trends\widget 5\clothes.jpg">
+<div class="outterbox">
+    <p id="close">X</p>
+    <div class="innerbox">
+         <h1>Like Fun Emails?</h1>
+   <div class="middle">
+        <p>join out list and...</p>
+        <h2>GET 10% OFF</h2>
+        <p>your next order and a whole lot more!</p>
+   </div>
+   <input type="email" id="email" placeholder="Enter email" name="email">
+   <button type="submit">Submit</button>
+    </div>
+</div>
+</div>
+<script>
+    //closes popup by 
+document.getElementById('close').addEventListener('click',function(){
+    var elmToRemove = this.parentNode.parentNode;
+    elmToRemove.parentNode.removeChild(elmToRemove);
+        return false;
+});
+</script>
