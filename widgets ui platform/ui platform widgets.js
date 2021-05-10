@@ -747,6 +747,166 @@ el.outerHTML = elhtml;
             }
         },
         
+        'widget 4': {
+            friendlyName: 'Widget 4',
+            description: 'Quote pop up more design',
+            fields: [
+                'BACKGROUND COLOUR',
+                { type: 'background-image', id: 'bgimg', name: 'bgimg', label: 'Background Colour', value: 'linear-gradient(45deg, purple, white)'},
+                'QUOTE',
+                { type: 'color', id: 'color', name: 'color', label: 'Text Colour', value: '#F3ECEC' },
+                { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: '<br>Happy days are here<br> again! The skies above are<br> clear again. Let us<br> sing a song of cheer<br> again, happy days are<br> here again!<br>' },
+                'FOREGROUND',
+                { type: 'color', id: 'fgColor', name: 'fgColor', label: 'Foreground', value: '#F3ECEC' }
+            ],
+        
+        
+            js_build: function(widget){
+                var uniqueID = Date.now();
+                var str = `
+                
+    //!-##${widget.widgetType}--START##
+    // ${JSON.stringify(widget)}
+    (function(){
+    var settings = { 
+        content: '${widget.content.replace('\'', '\\\'')}', // content txt
+        bgimg: '${widget.bgimg}', // background colour 
+        color: '${widget.color}', // text colour 
+        fgColor: '${widget.fgColor}' //for quotes colour/ border colour
+    };
+    var elid = 'wto-widget--quote_box2--${uniqueID}';
+    // Remove if exists - ensures no duplicates
+    document.querySelectorAll('.wto-widget--quote_box2').forEach(function(node){
+    node.parentNode.removeChild(node);
+    });
+    
+    var body = document.getElementsByTagName('body')[0];
+    var el = document.createElement('div');
+    body.insertAdjacentElement('afterBegin', el);
+    
+    var elhtml = '\<div id="'+ elid +'" class="wto-widget--quote_box2" style="z-index: 9999; background-image: '+ settings.bgimg +'; width: 255px !important; height: 400px !important; margin: 10px; padding: 25px; position: fixed; top: 0; left: 0;">\
+    <svg id="wto_widget3_open_quote" style="position: fixed; top: 83px; left: 56px; width: 30px; height: 25px; z-index: 9999; color: '+ settings.fgColor +';" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-quote-left fa-w-16 fa-2x"><path fill="currentColor" d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path></svg>\
+    <div class="leftborder" style="border-left: 3px solid '+ settings.fgColor +'; height: 57%; position: fixed; top: 10px; left: 41px;"></div>\
+    <div class="botborder" style="border-bottom: 3px solid '+ settings.fgColor +'; width: 9%; position: fixed; top: 319px; left: 41px;"></div>\
+    <div class="topborder" style="border-top: 3px solid '+ settings.fgColor +'; width: 9%; position: fixed; top: 94px; left: 96px;"></div>\
+    <div class="rightborder" style="border-right: 3px solid '+ settings.fgColor +'; height: 58%; position: fixed; top: 94px; left: 232px;"></div>\
+    <div style="padding: 5px; margin: 3px; z-index= 9999; text-align: center; font-family: sans-serif;  font-weight: bold; font-style: italic;">\
+    <h1 style="color:'+ settings.color +'; font-size: 25px; width: 160px; height: 75px; position: fixed; top: 112px; left: 55px;">Quote</h1>\
+    <p id="content" style="color:'+ settings.color +'; font-size: 15px; width: 160px; height: 75px; position: fixed; top: 134px; left: 55px;">'+ settings.content +'</p><br>\
+    <h2 style="color:'+ settings.color +'; font-size: 35px; width: 160px; height: 75px; position: fixed; top: 275px; left: 55px;">. . .</h2></div>\
+    <svg  id="wto_widget3_close_quote" style="position: fixed; top: 310px; left: 187px; width: 30px; height: 25px; z-index: 9999; color: '+ settings.fgColor +';" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-quote-right fa-w-16 fa-2x"><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg></div>\
+    ';
+    
+    el.outerHTML = elhtml;    
+    })();
+    //!-##${widget.widgetType}--END##`;
+                        
+            return str;
+            }
+        },
+           
+        'widget 5': {
+    friendlyName: 'Widget 5',
+    description: 'push notification for sales. user enters email',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'outerbgcol', name: 'outerbgcol', label: 'Outer Background Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'innerbgcol', name: 'innerbgcol', label: 'Inner Background Colour', value: '#F46C78' },
+        { type: 'color', id: 'middlebgcol', name: 'middlebgcol', label: 'Middle Background Colour', value: '#FFE2DF' },
+        //'IMAGE',
+       // { type: 'image', id: 'imglink', name: 'imglink', label: 'Image', value: //'https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/clothes.jpg'},
+        'X CLOSE COLOUR',
+        { type: 'color', id: 'closepopupcol', name: 'closepopupcol', label: 'X Close Pop Up Colour', value: '#F46C78' },
+        'TOP HEADER',
+        { type: 'background-image', id: 'topheadercol', name: 'topheadercol', label: 'Text Colour', value: 'linear-gradient(to left, violet, indigo, blue)' },
+        { type: 'text', id: 'topheaderfontsize', name: 'topheaderfontsize', label: 'Font Size', value: '36px' },
+        { type: 'text', id: 'topheadertext', name: 'topheadertext', label: 'Header Text', value: 'Like Fun Emails?' },
+        'MIDDLE HEADER',
+        { type: 'color', id: 'middleheadercol', name: 'middleheadercol', label: 'Text Colour', value: '#EE82EE' },
+        { type: 'text', id: 'middlefontsize', name: 'middlefontsize', label: 'Font Size', value: '25px' },
+        { type: 'text', id: 'middleheadertext', name: 'middleheadertext', label: 'Middle Header Text', value: 'GET 10% OFF' },
+        'CONTENT',
+        { type: 'text', id: 'contentfontsize', name: 'contentfontsize', label: 'Font Size', value: '15px' },
+        { type: 'text', id: 'contenttoptext', name: 'contenttoptext', label: 'Top Content', value: 'join out list and...' },
+        { type: 'text', id: 'contentbottomtext', name: 'contentbottomtext', label: 'Bottom Content', value: 'your next order and a whole lot more!' },
+        'BUTTON/Email',
+        { type: 'text', id: 'buttontext', name: 'buttontext', label: 'Button Text', value: 'Submit' },
+        { type: 'color', id: 'buttontextcol', name: 'buttontextcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'buttonemailcol', name: 'buttonemailcol', label: 'Button Background Colour/ Email Border', value: '#FF8299' },
+        { type: 'text', id: 'buttonfontsize', name: 'buttonfontsize', label: 'Button Font Size', value: '20px' },
+       // 'IMAGE',
+       // { type: 'background-image', id: 'bgimg', name: 'bgimg', label: 'Background Image', value: 'url:"https://c.webtrend-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/clothes.jpg"' }
+    ],
+
+
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+//!-##${widget.widgetType}--START##
+// ${JSON.stringify(widget)}
+(function(){
+var settings = {
+    outerbgcol:'${widget.outerbgcol}', // outer background colour 
+    innerbgcol: '${widget.innerbgcol}', // inner background colour 
+    middlebgcol: '${widget.middlebgcol}', // middle background colour    
+    imglink: '${widget.imglink}', // image change
+    closepopupcol: '${widget.closepopupcol}', // change x colour
+    topheadertext: '${widget.topheadertext.replace('\'', '\\\'')}', // top header txt
+    topheaderfontsize: '${widget.topheaderfontsize}', // header font size 
+    topheadercol: '${widget.topheadercol}', // header text colour 
+    middleheadercol: '${widget.middleheadercol}', // middle header text colour 
+    middleheadertext: '${widget.middleheadertext.replace('\'', '\\\'')}', // middle header txt
+    middlefontsize: '${widget.middlefontsize}', // middle header font size 
+    contenttoptext: '${widget.contenttoptext.replace('\'', '\\\'')}', // top content txt
+    contentbottomtext: '${widget.contentbottomtext.replace('\'', '\\\'')}', //  bottom content txt
+    contentfontsize: '${widget.contentfontsize}', // content font size 
+    buttontext : '${widget.buttontext.replace('\'', '\\\'')}', //button txt
+    buttontextcol: '${widget.buttontextcol}', //button txt colour
+    buttonemailcol: '${widget.buttonemailcol}', //button colour/ email border colour
+    buttonfontsize: '${widget.buttonfontsize},' //button font size
+  	// bgimg: '${widget.bgimg.replace('\'', '\\\'')}' //button font size
+
+};
+var elid = 'wto-widget--push_notification2--${uniqueID}';
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--push_notification2').forEach(function(node){
+node.parentNode.removeChild(node);
+});
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\ <div id="'+ elid +'" class="wto-widget--push_notification2">\
+<style>@media all and (min-width: 768px) and (max-width: 1024px) { .outterbox { background-color: #FFFFFF; width: 350px; height: 350px; margin: 10px; padding: 15px; border-style: inset; position: fixed; top: 135px; left: 26px; z-index: 9999; } .innerbox { background-color: #F46C78; width: 300px; height: 300px; margin: 10px; padding: 15px; position: fixed; z-index: 9999; } .middle { background-color: #FFE2DF; width: 285px; height: 130px; margin: 3px; padding: 5px; position: fixed; z-index: 9999; } #email { position: inherit; top: 443px; border: 5px solid #FF8299; width: 221px; height: 36px; left: 48px; z-index: 9999; } button { position: inherit; top: 443px; width: 142px; height: 36px; left: 268px; background-color: #FF8299; border-color: #FF8299; color: #FFFFFF; font-weight: bold; font-size: 18px; font-family: sans-serif; z-index: 9999; } img { position: fixed; border-radius: 6px; width: 496px; height: 459px; top: 115px; left: 376px; } p { text-align: center; font-size: 15px; font-family: sans-serif; z-index: 9999; } h1 { font-weight: bold; font-size: 36px; font-family: sans-serif; text-align: center; background-image: linear-gradient(to left, violet, indigo, blue); -webkit-background-clip: text; color: transparent; z-index: 9999; } h2 { text-align: center; font-size: 25px; font-family: sans-serif; color: violet; z-index: 9999; } #close { position: inherit; z-index: 9999; top: 123px; left: 397px; color: #F46C78; font-size: 24px; font-family: sans-serif; font-weight: bold; }} @media all and (max-width: 767px) { .outterbox { background-color: #FFFFFF; width: 400px; height: 400px; margin: 10px; padding: 15px; border-style: inset; position: fixed; top: 0; left: 0; z-index: 9999; } .innerbox { background-color: #F46C78; width: 350px; height: 354px; margin: 10px; padding: 15px; position: fixed; z-index: 9999; } .middle { background-color: #FFE2DF; width: 333px; height: 158px; margin: 3px; padding: 5px; position: fixed; z-index: 9999; } #email { position: inherit; top: 350px; border: 5px solid #FF8299; width: 263px; height: 42px; left: 23px; z-index: 9999; } button { position: inherit; top: 350px; width: 144px; height: 42px; left: 285px; background-color: #FF8299; border-color: #FF8299; color: #FFFFFF; font-weight: bold; font-size: 18px; font-family: sans-serif; z-index: 9999; } img { display: none; } p { text-align: center; font-size: 16px; font-family: sans-serif; z-index: 9999; } h1 { font-weight: bold;font-size: 39px; font-family: sans-serif; text-align: center; background-image: linear-gradient(to left, violet, indigo, blue); -webkit-background-clip: text; color: transparent; z-index: 9999; } h2 { text-align: center; font-size: 33px; font-family: sans-serif; color: violet; z-index: 9999; } #close { position: inherit; z-index: 9999; top: -6px; left: 422px; color: #F46C78; font-size: 24px; font-family: sans-serif; font-weight: bold;}}</style>\
+/*<div class="bgimg" style="position: fixed; border-radius: 6px; width: 594px; height: 459px; top: 73px; left: 615px; z-index: 9999; background-image:'+ settings.bgimg +' ; background-size: contain, cover;"></div>*/\
+<img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/clothes.jpg" style="position: fixed; border-radius: 6px; width: 594px; height: 459px; top: 73px; left: 615px; z-index: 9999;">\
+<div class="outterbox" style="background-color: '+ settings.outerbgcol +'; width: 350px; height: 350px; margin: 10px; padding: 15px; border-style: inset; position: fixed; top: 99px; left: 281px; z-index: 9999; box-sizing: unset;">\
+    <p id="close" style="position: fixed; z-index: 9999; top: 92px; left: 653px; color: '+ settings.closepopupcol +'; font-size: 24px; font-family: sans-serif; font-weight: bold; margin-top: 24px;">X</p>\
+    <div class="innerbox" style="background-color: '+ settings.innerbgcol +'; width: 300px; height: 300px; margin: 10px; padding: 15px; position: fixed; z-index: 9999;">\
+         <h1 style="font-weight: bold; font-size: '+ settings.topheaderfontsize +'; font-family: sans-serif; text-align: center; background-image: '+ settings.topheadercol +'; -webkit-background-clip: text; color: transparent; z-index: 9999; margin-top: 18px;">'+ settings.topheadertext +'</h1>\
+   <div class="middle" style="background-color: '+ settings.middlebgcol +'; width: 285px; height: 130px; margin: 3px; padding: 5px; position: fixed; z-index: 9999; box-sizing: unset; margin-top: 25px;">\
+        <p style="text-align: center; font-size: '+ settings.contentfontsize +'; font-family: sans-serif; z-index: 9999; margin-top: 18px;">'+ settings.contenttoptext +'</p>\
+        <h2 style="text-align: center; font-size: '+ settings.middlefontsize +'; font-family: sans-serif; color: '+ settings.middleheadercol +'; z-index: 9999; font-weight: bold; margin-top: 18px;">'+ settings.middleheadertext +'</h2>\
+        <p style="text-align: center; font-size: '+ settings.contentfontsize +'; font-family: sans-serif; z-index: 9999; margin-top: 18px;">'+ settings.contentbottomtext +'</p>\
+   </div>\
+   <input type="email" id="email" placeholder="Enter email" name="email" style="position: fixed; top: 406px; border: 3px solid '+ settings.buttonemailcol +'; width: 221px; height: 36px; left: 303px; z-index: 9999; font-family: sans-serif; font-size:10px;">\
+   <button type="submit" style ="position: fixed; top: 406px; width: 128px; height: 36px; left: 519px; background-color: '+ settings.buttonemailcol +'; border-color: '+ settings.buttonemailcol +'; color: '+ settings.buttontextcol +'; font-weight: bold; font-size: '+ settings.buttonfontsize +'; font-family: sans-serif; z-index: 9999; box-sizing: unset;">'+ settings.buttontext +'</button>\
+    </div></div>\
+</div> \';
+el.outerHTML = elhtml;
+//closes popup by 
+document.getElementById('close').addEventListener('click',function(){
+    var elmToRemove = this.parentNode.parentNode;
+    elmToRemove.parentNode.removeChild(elmToRemove);
+        return false;
+});
+})();
+//!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        
         'custom': {
             friendlyName: 'Custom',
             description: 'Created your own widgets? Insert your own Widget JSON here.',
@@ -807,11 +967,19 @@ el.outerHTML = elhtml;
 </div>
     `;
             }
-            
+             else if(field.type == "background-image"){
+                str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="${field.type}" id="${field.id}" name="${field.name}" value="${field.value}" url="${field.url}"></div>`;
+            }
+            else if(field.type == "image"){
+                str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="${field.type}" id="${field.id}" name="${field.name}" value="${field.value}"></div>`;
+            }
             else if(field.type == "textarea"){
                 str += `<div><label for="${field.id}">${field.label}:</label>${note}<textarea id="${field.id}" name="${field.name}">${field.value.replace(/\<br\s?\/?\>/g, '\n')}</textarea></div>`;
             }
              else if(field.type == "datetime-local"){
+                str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="${field.type}" step="${field.step}" id="${field.id}" name="${field.name}" value="${field.value}"></div>`;
+            }
+            else if(field.type == "url"){
                 str += `<div><label for="${field.id}">${field.label}:</label>${note}<input type="${field.type}" step="${field.step}" id="${field.id}" name="${field.name}" value="${field.value}"></div>`;
             }
             else if(field.type == "color"){
@@ -1021,7 +1189,7 @@ var makeAlignmentGrid = function(name){
             #s-widgets-close { position: absolute; top: 20px; right: 20px; font-weight: 300; font-size: 20px; line-height: 20px; cursor: pointer; }
             .s-widgets-formgroup { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
             #s-widgets label { display: block; font-weight: 300; text-transform: uppercase; }
-            #s-widgets input[type="text"], #s-widgets input[type="datetime-local"], #s-widgets input[type="number"], #s-widgets select, #s-widgets textarea { color: white; width: 100%; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); }
+            #s-widgets input[type="text"], #s-widgets input[type="datetime-local"], #s-widgets input[type="background-image"], #s-widgets input[type="image"], #s-widgets input[type="url"], #s-widgets input[type="number"], #s-widgets select, #s-widgets textarea { color: white; width: 100%; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); }
             #s-widgets input[type="date"], #s-widgets input[type="time"] { color: white; height: 30px; padding: 5px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, .5); margin-right: 10px; }
             #s-widgets input::-webkit-calendar-picker-indicator { filter: invert(1); }
             #s-widgets textarea { min-height: 100px; width: 100% !important; }
@@ -1103,7 +1271,7 @@ var makeAlignmentGrid = function(name){
     },
     
     apply: function(shouldDelete){
-        var sel = 'select, input[type="text"], input[type="datetime-local"], input[type="number"], input[type="hidden"], input[type="checkbox"], input[type="radio"]:checked, input[type="color"], input[type="range"], textarea';
+        var sel = 'select, input[type="text"], input[type="image"], input[type="url"], input[type="datetime-local"], input[type="background-image"], input[type="number"], input[type="hidden"], input[type="checkbox"], input[type="radio"]:checked, input[type="color"], input[type="range"], textarea';
         var parent = document.getElementById('s-widgets--fields');
         
         var o = {};
