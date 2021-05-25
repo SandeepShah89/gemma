@@ -906,7 +906,494 @@ document.getElementById('close').addEventListener('click',function(){
                 return str;
             }
         },
+	'widget 6': {
+    friendlyName: 'Widget 6',
+    description: 'Social 1 - Like us on ? pop up',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#FFFFFF' },
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'LIKE US<br> ON FACEBOOK' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#000000' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '26px' },
+        'CONTENT',
+        { type: 'color', id: 'txtcol', name: 'txtcol', label: 'Text Colour', value: '#363130' },
+        { type: 'text', id: 'txtfontsize', name: 'txtfontsize', label: 'Content Font Size', value: '16px' },
+        { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: 'Follow us to get updates<br> about our events, seasonal<br> sales and more.' },
+        'BUTTON',
+        { type: 'text', id: 'btntxt', name: 'btntxt', label: 'Button Text', value: 'LIKE' },
+        { type: 'color', id: 'btntxtcol', name: 'btntxtcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'btnbgcol', name: 'btnbgcol', label: 'Button Background Colour', value: '#008DD5' },
+        { type: 'text', id: 'btnfontsize', name: 'btnfontsize', label: 'Button Font Size', value: '15px' }
+    ],
+
+
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
         
+//!-##${widget.widgetType}--START##
+// ${JSON.stringify(widget)}
+(function(){
+var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    txtfontsize: '${widget.txtfontsize}', // content font size  
+    content: '${widget.content.replace('\'', '\\\'')}', // content txt
+    txtcol: '${widget.txtcol}', // text colour 
+    btntxt : '${widget.btntxt.replace('\'', '\\\'')}', // button txt
+    btntxtcol: '${widget.btntxtcol}', // button txt colour
+    btnbgcol: '${widget.btnbgcol}', // button colour
+    btnfontsize: '${widget.btnfontsize}', // button font size
+    bgcol: '${widget.bgcol}' // background colour
+};
+var elid = 'wto-widget--social_notification_1--${uniqueID}';
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--social_notification_1').forEach(function(node){
+node.parentNode.removeChild(node);
+});
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\ <div id="'+ elid +'" class="wto-widget--social_notification_1" style="box-sizing: unset; z-index: 9999; margin: 5px; padding: 5px; position: fixed; bottom: 7px; left: 18px; height: 377px; width: 276px;">\
+<img id="bg" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/marble.jpg" style="margin: 5px; padding: 5px; position: fixed; bottom: -4px; left: 5px; height: 400px; width: 305px; border-radius: 3px;">\
+<span class="wto_closebtn_not_social1" style="margin-left: 15px; color: #757980; font-weight: bold; position: fixed; bottom: 361px; left: 255px; font-size: 41px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999;">×</span>\
+<div class="wto_container" style="box-sizing: unset; position: absolute; height: 377px; width: 278px; background-color: '+ settings.bgcol +'; border-radius: 28px;">\
+<div class="wto_fb_like_icon">\
+<img id="svgbg" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/svgbg.jpg" style="position: inherit; height: 165px; width: 278px;  background-color: #000000;  background-position: center;  background-repeat: no-repeat;  background-size: cover; border-top-left-radius: 28px; border-top-right-radius: 28px;">\
+<img id="wto_fb_thumbup" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/thumbs-up-facebook-logo-svgrepo-com__1_.png" style="z-index: 9999; left: 122px; bottom: 265px; position: fixed; width: 90px; height: 90px;">\
+</div>\
+    <div class="wto_social_content"  style="box-sizing: unset; bottom: 67px; position: inherit; width: 278px; height: 150px; text-align: center; line-height: 1.1;">\
+        <h1 style="font-size: '+ settings.headerfontsize +'; font-weight: bold; font-family: sans-serif; color: '+ settings.headercol +';">'+ settings.headertxt +'</h1>\
+        <p style="font-size: '+ settings.txtfontsize +'; font-family: Verdana; color: '+ settings.txtcol +';">'+ settings.content +'</p>\
+    </div>\
+    <div class="wto_lower_btn" style="box-sizing: unset; z-index: 9999; position: absolute; height: 60px; width: 278px; background-color: #D6E7FD; bottom: -2px; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">\
+        <button id="wto_likebtn_social" style="box-sizing: unset; background-color: '+ settings.btnbgcol +'; color: '+ settings.btntxtcol +'; border-radius: 10px; font-size: '+ settings.btnfontsize +'; font-weight: bold; border: none; width: 83px; height: 34px; position: relative; bottom: -13px; left: 96px;">'+ settings.btntxt +'</button>\
+    </div>\
+</div>\
+</div>\';
+el.outerHTML = elhtml;
+
+})();
+//!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        'widget 7': {
+    friendlyName: 'Widget 7',
+    description: 'Social 2 --join us',
+    fields: [
+        // { type: 'onpageposition', id: 'text', name: 'text', label: 'text' }, // placeholder so i know the markup.
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#FFFFFF' },
+        'HEADER',
+        { type: 'text', id: 'header', name: 'header', label: 'Header Text', value: 'Join our community today!'},
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Text Colour', value: '#000000' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: ' Header Font Size', value: '26px' },
+        'CONTENT',
+        { type: 'color', id: 'txtcol', name: 'txtcol', label: 'Text Colour', value: '#363130' },
+        { type: 'text', id: 'txtfontsize', name: 'txtfontsize', label: 'Content Font Size', value: '15px' },
+        { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: 'Follow us on Facbook to hear our offers!' },
+        'FOREGROUND',
+        { type: 'color', id: 'fgcol', name: 'fgcol', label: 'Line', value: '#757980' }
+    ],
+
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+//!-##${widget.widgetType}--START##
+// ${JSON.stringify(widget)}
+(function(){
+var settings = {
+    header: '${widget.header.replace('\'', '\\\'')}', // text in header
+    headerfontsize: '${widget.headerfontsize}', // header font size 
+    headercol: '${widget.headercol}', // header colour
+    bgcol: '${widget.bgcol}', // background colour   
+    content: '${widget.content.replace('\'', '\\\'')}', // content txt
+    txtcol: '${widget.txtcol}', // text colour 
+    txtfontsize: '${widget.txtfontsize}', // content font size 
+    fgcol: '${widget.fgcol}' // border colour
+};
+var elid = 'wto-widget--social_notification_2--${uniqueID}';
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--social_notification_2').forEach(function(node){
+node.parentNode.removeChild(node);
+});
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget--social_notification_2" style="box-sizing: unset; z-index: 9999; margin: 5px; padding: 8px; position: fixed; bottom: 5px; left: 10px; height: 200px; width: 400px; border-radius: 5px; background-color: '+ settings.bgcol +';">\
+<span class="wto_closebtn_not_social2" style="margin-left: 15px; color: #757980;  position: absolute; bottom: 189px; left: 370px; font-size: 33px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999;">×</span> \
+<div class="wto_social_content" style="margin: 1px; padding: 5px; text-align: left; position: relative; bottom: 12px; border-bottom: 2px solid '+ settings.fgcol +';">\
+    <h1 style="display: inline-block; margin-top: 21px; font-weight: bold; font-size: '+ settings.headerfontsize +'; font-family: monospace; color: '+ settings.headercol +'; width: 100%;">'+ settings.header +'</h1>\
+    <p style="margin-top: 20px; text-align: center; font-size: '+ settings.txtfontsize +'; font-family: monospace; color: '+ settings.txtcol +';">'+ settings.content +'</p>\
+</div>\
+<div class="wto_social_icons" style="display: flex; flex-wrap: nowrap; margin-top: 6px">\
+    <div style="position: relative; left: 34px; width: 121px; margin: 1px;">\
+        <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/facebook-4.png" style="height: 80px; width: 80px;">\
+    </div>\
+    <div style="position: relative; left: 34px; width: 121px; margin: 1px;">\
+        <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/instagram-2-1.png" style="height: 80px; width: 80px;">\
+    </div>\
+    <div style="position: relative; left: 34px; width: 121px; margin: 1px;">\
+        <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/linkedin-icon-2.png" style="height: 80px; width: 80px;">\
+    </div>\
+</div>\
+</div>\';
+el.outerHTML = elhtml;
+
+})();
+//!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+	'widget 8': {
+    friendlyName: 'Widget 8',
+    description: 'Promo card 1',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#2196F3' },
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'Get ready for your return to Silicon Vally.' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '27px' },
+        'CONTENT',
+        { type: 'color', id: 'txtcol', name: 'txtcol', label: 'Text Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'txtfontsize', name: 'txtfontsize', label: 'Content Font Size', value: '20px' },
+        { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: 'Book a tour at one of our bay area locations anf recieve 50% off your first two months' },
+        'BUTTON',
+        { type: 'text', id: 'btntxt', name: 'btntxt', label: 'Button Text', value: 'Book a tour' },
+        { type: 'color', id: 'btntxtcol', name: 'btntxtcol', label: 'Button Text Colour', value: '#2196F3' },
+        { type: 'color', id: 'btnbgcol', name: 'btnbgcol', label: 'Button Background Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'btnfontsize', name: 'btnfontsize', label: 'Button Font Size', value: '20px' }
+    ],
+
+
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+//!-##${widget.widgetType}--START##
+// ${JSON.stringify(widget)}
+(function(){
+var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    txtfontsize: '${widget.txtfontsize}', // content font size  
+    content: '${widget.content.replace('\'', '\\\'')}', // content txt
+    txtcol: '${widget.txtcol}', // text colour 
+    btntxt : '${widget.btntxt.replace('\'', '\\\'')}', // button txt
+    btntxtcol: '${widget.btntxtcol}', // button txt colour
+    btnbgcol: '${widget.btnbgcol}', // button colour
+    btnfontsize: '${widget.btnfontsize}', // button font size
+    bgcol: '${widget.bgcol}' // background colour
+};
+var elid = 'wto-widget--grid-container_promo--${uniqueID}';
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--grid-container_promo').forEach(function(node){
+node.parentNode.removeChild(node);
+});
+var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+css.add([
+    ".item1 { grid-area: close; }",
+    ".item2 { grid-area: header; }",
+    ".item3 { grid-area: content; }",
+    ".item4 { grid-area: button; }",
+    ".item5 { grid-area: image; }",
+    ".wto-widget-grid-container_promo { display: grid; grid-template-areas: 'image image header header header close' 'image image content content content content' 'image image content content content content' 'image image button button button button'; grid-gap: 7px; background-color: "+ settings.bgcol +"; padding: 10px; width: 43%; border-radius: 5px; z-index: 9999; position: fixed; box-sizing: unset; top: 5px; left: 10px; }",
+    ".wto-widget-grid-container_promo > div { text-align: left; padding: 0px 8px; }",
+    ".wto_closebtn_not { color: #ffffff; font-size: 38px; line-height: 20px; cursor: pointer; transition: 0.3s; }",
+    ".closebtn_not:hover { color: #45474a; }",
+    "#wto_promo_content { font-size: "+ settings.txtfontsize +"; font-family: Verdana; color: "+ settings.txtcol +"; }",
+    "#wto_promo_header { font-size: "+ settings.headerfontsize +"; font-family: Verdana; color: "+ settings.headercol +"; font-weight: bold; }",
+    "button { width: 430px; height: 50px; border: none; border-radius: 4px; background-color: "+ settings.btnbgcol +"; color: "+ settings.btntxtcol +"; font-family: Verdana; font-size: "+ settings.btnfontsize +"; }"
+]);
+
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget-grid-container_promo">\
+<div class="wto_grid-item item1">\
+<span class="wto_closebtn_not">×</span></div>\
+<div class="wto_grid-item item2">\
+<h1 id="wto_promo_header">'+ settings.headertxt +'</h1>\
+</div>\
+<div class="wto_grid-item item3">\
+<p id="wto_promo_content">'+ settings.content +'</p>\
+</div>\
+<div class="wto_grid-item item4">\
+<button>'+ settings.btntxt +'</button>\
+</div>\
+<div class="wto_grid-item item5">\
+<img id="wto_iconimg" src"https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/wto_promo_icon.jpg" style="height: 170px; width: 170px !important; border-radius: 4px; border: none; background-color: bisque; visibility: visible !important;">\
+</div>\
+</div>\
+';
+el.outerHTML = elhtml;
+})();
+//!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+       'widget 9': {
+    friendlyName: 'Widget 9',
+    description: 'Promo card 2 spinner wheel',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'background-image', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: 'linear-gradient(90deg , rgba(60, 60, 242, 1) 0%, #62f5e6 52%, rgba(60, 60, 242, 1) 100%)'},
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'Spin the wheel to win!' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '43px' },
+        'CONTENT',
+        { type: 'color', id: 'txtcol', name: 'txtcol', label: 'Text Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'txtfontsize', name: 'txtfontsize', label: 'Content Font Size', value: '25px' },
+        { type: 'text', id: 'content', name: 'content', label: 'Content Text', value: 'Enter your email address to spin the wheel for<br> a chance to win!' },
+        'BUTTON',
+        { type: 'text', id: 'btntxt', name: 'btntxt', label: 'Button Text', value: 'SPIN' },
+        { type: 'color', id: 'btntxtcol', name: 'btntxtcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'btnbgcol', name: 'btnbgcol', label: 'Button Background Colour', value: '#001aff' },
+        { type: 'color', id: 'btnborcol', name: 'btnborcol', label: 'Button Border Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'btnfontsize', name: 'btnfontsize', label: 'Button Font Size', value: '37px' },
+        'WHEEL',
+        { type: 'text', id: 'wheeltxt1', name: 'wheeltxt1', label: 'Wheel Text 1', value: '10% Off' },
+        { type: 'text', id: 'wheeltxt2', name: 'wheeltxt2', label: 'Wheel Text 2', value: 'Free Shipping' },
+        { type: 'text', id: 'wheeltxt3', name: 'wheeltxt3', label: 'Wheel Text 3', value: 'Not Quite' },
+        { type: 'text', id: 'wheeltxt4', name: 'wheeltxt4', label: 'Wheel Text 4', value: '20% Off' },
+        { type: 'text', id: 'wheeltxt5', name: 'wheeltxt5', label: 'Wheel Text 5', value: 'Almost' },
+        { type: 'text', id: 'wheeltxt6', name: 'wheeltxt6', label: 'Wheel Text 6', value: 'No Luck' },
+        { type: 'text', id: 'wheeltxt7', name: 'wheeltxt7', label: 'Wheel Text 7', value: '5% Off' },
+        { type: 'text', id: 'wheeltxt8', name: 'wheeltxt8', label: 'Wheel Text 8', value: 'Try Again' },
+        { type: 'color', id: 'wheeltxtcol', name: 'wheeltxtcol', label: 'Wheel Text Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'wheeltxtfontsize', name: 'wheeltxtfontsize', label: 'Wheel Text Font Size', value: '24px' },
+        { type: 'color', id: 'wheelcol1', name: 'wheelcol1', label: 'Wheel Colour 1', value: '#3c3cf2' },
+        { type: 'color', id: 'wheelcol2', name: 'wheelcol2', label: 'Wheel Colour 2', value: '#62f5e6' },
+        { type: 'color', id: 'wheelcol3', name: 'wheelcol3', label: 'Wheel Colour 3', value: '#0000d4' },
+        { type: 'color', id: 'wheelcol4', name: 'wheelcol4', label: 'Wheel Colour 4', value: '#1be6d1' }
+    ],
+
+
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+//!-##${widget.widgetType}--START##
+// ${JSON.stringify(widget)}
+(function(){
+var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    txtfontsize: '${widget.txtfontsize}', // content font size  
+    content: '${widget.content.replace('\'', '\\\'')}', // content txt
+    txtcol: '${widget.txtcol}', // text colour 
+    btntxt : '${widget.btntxt.replace('\'', '\\\'')}', // button txt
+    btntxtcol: '${widget.btntxtcol}', // button txt colour
+    btnbgcol: '${widget.btnbgcol}', // button colour
+    btnborcol: '${widget.btnborcol}', // button border colour
+    btnfontsize: '${widget.btnfontsize}', // button font size
+    bgcol: '${widget.bgcol}', // background colour
+    wheeltxt1: '${widget.wheeltxt1}', //promo spinner txt
+    wheeltxt2: '${widget.wheeltxt2}',
+    wheeltxt3: '${widget.wheeltxt3}',
+    wheeltxt4: '${widget.wheeltxt4}',
+    wheeltxt5: '${widget.wheeltxt5}',
+    wheeltxt6: '${widget.wheeltxt6}',
+    wheeltxt7: '${widget.wheeltxt7}',
+    wheeltxt8: '${widget.wheeltxt8}',
+    wheeltxtcol: '${widget.wheeltxtcol}', //wheel text colour
+    wheeltxtfontsize: '${widget.wheeltxtfontsize}', //wheel text font size
+    wheelcol1: '${widget.wheelcol1}', //wheel colour 1
+    wheelcol2: '${widget.wheelcol2}', //wheel colour 2
+    wheelcol3: '${widget.wheelcol3}', //wheel colour 3
+    wheelcol4: '${widget.wheelcol4}' //wheel colour 4
+};
+var elid = 'wto-widget--spinner-promo--${uniqueID}';
+// Remove if exists - ensures no duplicates
+document.querySelectorAll('.wto-widget--spinner-promo').forEach(function(node){
+node.parentNode.removeChild(node);
+});
+var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+css.add([
+    "* { box-sizing: border-box; padding: 0; margin: 0; outline: none; }",
+    ".mainbox { position: relative; width: 500px; height: 500px; top: -115px; left: -10px; }",
+    ".mainbox:after { position: absolute; content: ''; width: 32px; height: 43px; background: url(https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/arrow-left.png) no-repeat; background-size: 32px; top: 74%; transform: translateY(-50%); left: 116%; }",
+    ".box { width: 100%; height: 100%; position: relative; font-weight: bold; border-radius: 50%; border: 10px solid #fff; overflow: hidden; transition: all ease 5s; top: 25%; left: 15%; }",
+    ".wto-widget--spinner-promo { z-index: 9999; justify-content: center; align-items: center; overflow: hidden; background-image: "+ settings.bgcol +"; background-size: cover; height: 100%; width: 100%; position: fixed; }",
+    "span { width: 50%; height: 50%; display: inline-block; position: absolute; }",
+    ".span1 { clip-path: polygon(0 92%, 100% 50%, 0 8%); background-color: "+ settings.wheelcol1 +"; top: 120px; left: 0; }",
+    ".span2 { clip-path: polygon(100% 92%, 0 50%, 100% 8%); background-color: "+ settings.wheelcol2 +"; top: 120px; right: 0;}",
+    ".span3 { clip-path: polygon(50% 0%, 8% 100%, 92% 100%); background-color: "+ settings.wheelcol3 +"; bottom: 0; left: 120px; }",
+    ".span4 { clip-path: polygon(50% 100%, 92% 0, 8% 0); background-color: "+ settings.wheelcol4 +"; top: 0; left: 120px; }",
+    ".box1 .span3 b { transform: translate(-50%, -50%) rotate(-270deg); }",
+    ".box1 .span1 b, .box2 .span1 b { transform: translate(-50%, -50%) rotate(185deg); }",
+    ".box2 .span3 b { transform: translate(-50%, -50%) rotate(90deg); }",
+    ".box1 .span4 b, .box2 .span4 b { transform: translate(-50%, -50%) rotate(-85deg); }",
+    "span b { font-size: "+ settings.wheeltxtfontsize +"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: "+ settings.wheeltxtcol +"; }",
+    ".box2 { width: 100%; height: 100%; transform: rotate(-135deg); }",
+    "#wto_middlewheel { position: absolute; top: 40%; left: 268px; width: 90px; height: 90px; border-radius: 50%; border: 4px solid "+ settings.btnborcol +"; box-shadow: 0 5px 20px #000; }",
+    ".spin { position: absolute; top: 103%; left: 178%; width: 310px; height: 80px; border-radius: 5px; border: 4px solid "+ settings.btnborcol +"; background-color: "+ settings.btnbgcol +"; color: "+ settings.btntxtcol +"; box-shadow: 0 5px 20px #000; font-weight: bold; font-size: "+ settings.headerfontsize +"; cursor: pointer; }",
+    ".spin:active { width: 310px; height: 80px; font-size: "+ settings.btnfontsize +"; }",
+    ".mainbox.animate:after { animation: animateArrow 0.7s ease infinite; }",
+    "@keyframes animateArrow { 50%{ right: -40px; } }",
+    ".wto_logo { position: relative; top: -483px; left: 746px; }",
+    "img { height: 150px; width: 600px; }",
+    ".wto_content { position: relative; top: -490px; left: 685px; padding: 0px; margin: 0px; }",
+    "h1 { font-size: "+ settings.headerfontsize +"; color: "+ settings.headercol +"; font-family: Lucida Handwriting; margin-bottom: 13px; border-bottom: 3px solid #ffffff; padding: 18px; }",
+    "p { font-size: "+ settings.txtfontsize +"; color: "+ settings.txtcol +"; font-family: Monaco; padding: 15px; }",
+    ".wto_closebtn_not {  color: #ffffff; font-weight: bold; position: fixed; top: 15px; left: 1470px; font-size: 41px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; }",
+    ".closebtn_not:hover { color: #45474a; }"
+]);
+
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget--spinner-promo">\
+<span class="wto_closebtn_not">×</span> <div id="mainbox" class="mainbox">\
+    <div id="box" class="box">\
+      <div class="box1">\
+        <span class="span1"><b>'+ settings.wheeltxt1 +'</b></span>\
+        <span class="span2"><b>'+ settings.wheeltxt2 +'</b></span>\
+        <span class="span3"><b>'+ settings.wheeltxt3 +'</b></span>\
+        <span class="span4"><b>'+ settings.wheeltxt4 +'</b></span>\
+      </div>\
+      <div class="box2">\
+        <span class="span1"><b>'+ settings.wheeltxt5 +'</b></span>\
+        <span class="span2"><b>'+ settings.wheeltxt6 +'</b></span>\
+        <span class="span3"><b>'+ settings.wheeltxt7 +'</b></span>\
+        <span class="span4"><b>'+ settings.wheeltxt8 +'</b></span>\
+      </div>\
+    </div>\
+    <button class="spin" onclick="rotateFunction()">'+ settings.btntxt +'</button>\
+  </div>\
+  <div class="wto_logo">\
+    <img src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/logo.jpg">\
+  </div>\
+  <div class="wto_content">\
+      <h1>'+ settings.headertxt +'</h1>\
+    <p>'+ settings.content +'</p>\
+  </div>\
+  <div class="middle">\
+      <img id="wto_middlewheel" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/middlewheel.png">\
+  </div>\
+</div>\
+';
+el.outerHTML = elhtml;
+function rotateFunction(){
+    var min = 1024;
+    var max = 9999;
+    var deg = Math.floor(Math.random() * (max - min)) + min;
+    document.getElementById('box').style.transform = "rotate("+deg+"deg)";
+  };
+  var element = document.getElementById('mainbox');
+    element.classList.remove('animate');
+    setTimeout(function(){
+      element.classList.add('animate');
+    }, 5000);
+})();
+//!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        'widget 10': {
+    friendlyName: 'Widget 10',
+    description: 'Social 3 - different social platforms',
+    fields: [
+        'BACKGROUND COLOURS',
+        { type: 'color', id: 'fbbgcol', name: 'fbbgcol', label: 'Facebook Background Colour', value: '#3b5998'},
+        { type: 'color', id: 'twitbgcol', name: 'twitbgcol', label: 'Twitter Background Colour', value: '#00aced'},
+        { type: 'color', id: 'linkbgcol', name: 'linkbgcol', label: 'LinkedIn Background Colour', value: '#007bb6'},
+        { type: 'color', id: 'utubebgcol', name: 'utubebgcol', label: 'Youtube Background Colour', value: '#bb0000'},
+        'PLACEHOLDER TEXT',
+        { type: 'text', id: 'placetxt', name: 'placetxt', label: 'Placeholder Text', value: 'Your User Name' },
+        { type: 'color', id: 'placetxtcol', name: 'placetxtcol', label: 'Placeholder Text Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'placefontsize', name: 'placefontsize', label: 'Placeholder Font Size', value: '18px' } 
+    ],
+  
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = { 
+    placetxt: '${widget.placetxt.replace('\'', '\\\'')}', // placeholder txt
+    placetxtcol: '${widget.placetxtcol}', // placeholder text colour
+    placefontsize: '${widget.placefontsize}', // placeholder font size
+    fbbgcol: '${widget.fbbgcol}', // facebook background colour 
+    twitbgcol: '${widget.twitbgcol}', // twitter background colour 
+    linkbgcol: '${widget.linkbgcol}', // linkedin background colour 
+    utubebgcol: '${widget.utubebgcol}' // youtube background colour 
+  };
+  var elid = 'wto-widget--social3--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--social3').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-widget--social3 { position:fixed; z-index: 9999; }",
+    ".wto-widget--fb { position: fixed; bottom: 221px; left: 5px; display: inline-block; background-color: "+ settings.fbbgcol +"; border-radius: 43px; height: 40px; padding: 15px; margin: 5px; width: 240px; border: none; z-index: 9999; box-sizing: unset; }",
+    "#wto_fbusername { display: inline-block; background-color: "+ settings.fbbgcol +"; border-radius: 43px; height: 30px; padding: 15px; margin: 5px; width: 170px; position: inherit; bottom: 223px; left: 64px; border: none; }",
+    "::placeholder { color: "+ settings.placetxtcol +"; font-size: "+ settings.placefontsize +"; font-weight: bold; text-align: left; }",
+    "#wto_fbicon-img { height: 60px; width: 60px; position: absolute; top: 1px; left: 4px; z-index: 9999; border: 3px solid #fff; border-radius: 38px; }",
+    ".wto-widget--twit { position: fixed; bottom: 149px; left: 5px; display: inline-block; background-color: "+ settings.twitbgcol +"; border-radius: 43px; height: 40px; padding: 15px; margin: 5px; width: 240px; border: none; z-index: 9999; box-sizing: unset; }",
+    "#wto_twitusername { display: inline-block; background-color: "+ settings.twitbgcol +"; border-radius: 43px; height: 30px; padding: 15px; margin: 5px; width: 170px; position: inherit; bottom: 153px; left: 64px; border: none; }",
+    "#wto_twiticon-img { height: 60px; width: 60px; position: absolute; top: 1px; left: 4px; z-index: 9999; border: 3px solid #fff; border-radius: 38px; }",
+    ".wto-widget--link { position: fixed; bottom: 77px; left: 5px; display: inline-block; background-color: "+ settings.linkbgcol +"; border-radius: 43px; height: 40px; padding: 15px; margin: 5px; width: 240px; border: none; z-index: 9999; box-sizing: unset; }",
+    "#wto_linkusername { display: inline-block; background-color: "+ settings.linkbgcol +"; border-radius: 43px; height: 30px; padding: 15px; margin: 5px; width: 170px; position: inherit; bottom: 79px; left: 64px; border: none; }",
+    "#wto_linkicon-img { height: 60px; width: 60px; position: absolute; top: 1px; left: 4px; z-index: 9999; border: 3px solid #fff; border-radius: 38px; }",
+    ".wto-widget--utube{ position: fixed; bottom: 5px; left: 5px; display: inline-block; background-color: "+ settings.utubebgcol +"; border-radius: 43px; height: 40px; padding: 15px; margin: 5px; width: 240px; border: none; z-index: 9999; box-sizing: unset; }",
+    "#wto_utubeusername { display: inline-block; background-color: "+ settings.utubebgcol +"; border-radius: 43px; height: 30px; padding: 15px; margin: 5px; width: 170px; position: inherit; bottom: 6px; left: 64px; border: none; }",
+    "#wto_utubeicon-img { height: 60px; width: 60px; position: absolute; top: 1px; left: 4px; z-index: 9999; border: 3px solid #fff; border-radius: 38px; }"
+]);
+  
+  var body = document.getElementsByTagName('body')[0];
+  var el = document.createElement('div');
+  body.insertAdjacentElement('afterBegin', el);
+  var elhtml = '\<div id="'+ elid +'" class="wto-widget--social3">\
+  <div class="wto-widget--fb">\
+  <a href="https://www.facebook.com/"></a>\
+      <img id="wto_fbicon-img" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/wto_social3_fbicon.jpg">\
+  </a>\
+  <input type="username" id="wto_fbusername" placeholder="'+ settings.placetxt +'" name="username">\
+</div>\
+<div class="wto-widget--twit">\
+  <a href="https://twitter.com/login?lang=en-gb">\
+      <img id="wto_twiticon-img" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/wto_social3_twiticon.jpg">\
+  </a>\
+  <input type="username" id="wto_twitusername" placeholder="'+ settings.placetxt +'" name="username">\
+</div>\
+<div class="wto-widget--link">\
+  <a href="https://www.linkedin.com/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fcompany%2Flinkedin&fromSignIn=true&trk=organization_guest_nav-header-signin">\
+      <img id="wto_linkicon-img" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/wto_social3_linkicon.jpg">\
+  </a>\
+  <input type="username" id="wto_linkusername" placeholder="'+ settings.placetxt +'" name="username">\
+</div>\
+<div class="wto-widget--utube">\
+  <a href="https://www.youtube.com/">\
+      <img id="wto_utubeicon-img" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/wto_social3_utubeicon.jpg">\
+  </a>\
+  <input type="username" id="wto_utubeusername" placeholder="'+ settings.placetxt +'" name="username">\
+</div>\
+</div>\
+';
+el.outerHTML = elhtml;
+})();
+//!-##${widget.widgetType}--END##`;
+                
+            return str;
+        }
+    },
         'custom': {
             friendlyName: 'Custom',
             description: 'Created your own widgets? Insert your own Widget JSON here.',
