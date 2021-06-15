@@ -18,32 +18,25 @@
 //!-##${widget.widgetType}--START##
 // ${JSON.stringify(widget)}
 (function(){
-
 var settings = {
     header: '${widget.header.replace('\'', '\\\'')}', // text in header
-    headerfontSize: '${widget.headerfontsize}', // header font size 
+    headerfontsize: '${widget.headerfontsize}', // header font size 
     headercolor: '${widget.headercolor}', // header colour 
     bgcol: '${widget.bgcol}' // background colour  
 };
-
 var elid = 'wto-widget--Icon_Review_Box--${uniqueID}';
-
 // Remove if exists - ensures no duplicates
 document.querySelectorAll('.wto-widget--Icon_Review_Box').forEach(function(node){
 node.parentNode.removeChild(node);
 });
-
-
 var body = document.getElementsByTagName('body')[0];
 var el = document.createElement('div');
-
 body.insertAdjacentElement('afterBegin', el);
-
-var elhtml = ' \ <div class="box" style=" position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 290px; height: 130px; margin: 15px; box-shadow: 3px 6px 3px 6px grey">\
+var elhtml = ' \ <div id="'+ elid +'" class="wto-widget--Icon_Review_Box" style="z-index: 9999; position: fixed; top: 0; left: 0; background: '+ settings.bgcol +'; width: 310px; height: 140px; margin: 15px; box-shadow: 3px 6px 3px 6px grey">\
 <div class="hea" style="padding: 25px;">\
-    <header id="header" style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headerColor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">\
-    How was your experience today?</header><br>\
-<svg id="wto_widget2_thumbsup" style="position: absolute; top: 53px; left: 70px; width: 54px;  height: 54px;" xmlns="http://www.w3.org/2000/svg">\
+    <header id="header" style="text-align: left; background: '+ settings.bgcol +'; color: '+ settings.headercolor +'; font-family: sans-serif; font-size: '+ settings.headerfontsize +'; font-weight: bold;">\
+    '+ settings.header +'</header><br>\
+    <svg id="wto_widget2_thumbsup" viewBox="0 0 128 128" style="position: absolute; top: 53px; left: 70px; width: 54px; height: 54px;" xmlns="http://www.w3.org/2000/svg">\
     <radialGradient id="e" cx="51.77" cy="31.401" r="87.039" gradientTransform="matrix(-.0021809 1 -.7873 -.001717 76.604 -20.315)" gradientUnits="userSpaceOnUse">\
     <stop stop-color="#FFCA28" offset=".6"/>\
     <stop stop-color="#FFB300" offset="1"/>\
@@ -76,7 +69,7 @@ var elhtml = ' \ <div class="box" style=" position: fixed; top: 0; left: 0; back
     <path d="m91.29 85.24v3c7.83 0 14.61 0.87 14.67 0.88 0.13 0.02 0.26 0.02 0.39 0.02 3.64 0 7.53 1.67 7.53 6.37 0 4.63-3.66 9-7.53 9-0.08 0-0.16 0-0.25 0.01-0.04 0-3.83 0.31-8.99 0.31-5.45 0-13.24-0.35-19.41-1.99-5.95-1.59-8.97-3.94-8.97-6.97 0-0.93 0-3.76 6.34-5.75 3.95-1.24 9.4-1.87 16.21-1.87l0.01-3.01m0 0c-11.56 0-25.56 1.82-25.56 10.62 0 10.37 19.4 11.97 31.39 11.97 5.36 0 9.23-0.32 9.23-0.32 5.64 0 10.53-5.83 10.53-12s-4.89-9.37-10.53-9.37c0 0-6.93-0.9-15.06-0.9z" fill="#EDA600"/>\
     <polygon points="27.79 114.9 23 96 21 113" fill="#EDA600"/>\
     </svg>\
-<svg  id="wto_widget2_thumbsdown" style="position: fixed; top: 70px; right: 1300px; width: 54px;  height: 54px;" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">\
+<svg  id="wto_widget2_thumbsdown" style="position: fixed; top: 70px; right: 1280px; width: 54px;  height: 54px;" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">\
     <radialGradient id="e" cx="51.77" cy="31.401" r="87.039" gradientTransform="matrix(-.0021809 -1 -.7873 .001717 76.604 148.32)" gradientUnits="userSpaceOnUse">\
     <stop stop-color="#FFCA28" offset=".6"/>\
     <stop stop-color="#FFB300" offset="1"/>\
@@ -110,10 +103,8 @@ var elhtml = ' \ <div class="box" style=" position: fixed; top: 0; left: 0; back
     <polygon points="27.79 13.1 23 32 21 15" fill="#EDA600"/>\
 </svg>\
 </div> \
-</div> \';
-
+</div>\';
 el.outerHTML = elhtml;
-
     var h = document.getElementById(elid).offsetHeight;
     body.style.marginTop = h + 'px';
     
