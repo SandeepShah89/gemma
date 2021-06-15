@@ -1108,7 +1108,7 @@ css.add([
     ".wto-widget-grid-container_promo { display: grid; grid-template-areas: 'image image header header header close' 'image image content content content content' 'image image content content content content' 'image image button button button button'; grid-gap: 7px; background-color: "+ settings.bgcol +"; padding: 10px; width: 43%; border-radius: 5px; z-index: 9999; position: fixed; box-sizing: unset; top: 5px; left: 10px; }",
     ".wto-widget-grid-container_promo > div { text-align: left; padding: 0px 8px; }",
     ".wto_closebtn_not { color: #ffffff; font-size: 38px; line-height: 20px; cursor: pointer; transition: 0.3s; }",
-    ".closebtn_not:hover { color: #45474a; }",
+    ".wto_closebtn_not:hover { color: #45474a; }",
     "#wto_promo_content { font-size: "+ settings.txtfontsize +"; font-family: Verdana; color: "+ settings.txtcol +"; }",
     "#wto_promo_header { font-size: "+ settings.headerfontsize +"; font-family: Verdana; color: "+ settings.headercol +"; font-weight: bold; }",
     "button { width: 430px; height: 50px; border: none; border-radius: 4px; background-color: "+ settings.btnbgcol +"; color: "+ settings.btntxtcol +"; font-family: Verdana; font-size: "+ settings.btnfontsize +"; }"
@@ -1248,7 +1248,7 @@ css.add([
     "h1 { font-size: "+ settings.headerfontsize +"; color: "+ settings.headercol +"; font-family: Lucida Handwriting; margin-bottom: 13px; border-bottom: 3px solid #ffffff; padding: 18px; }",
     "p { font-size: "+ settings.txtfontsize +"; color: "+ settings.txtcol +"; font-family: Monaco; padding: 15px; }",
     ".wto_closebtn_not {  color: #ffffff; font-weight: bold; position: fixed; top: 15px; left: 1470px; font-size: 41px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; }",
-    ".closebtn_not:hover { color: #45474a; }"
+    ".wto_closebtn_not:hover { color: #45474a; }"
 ]);
 
 var body = document.getElementsByTagName('body')[0];
@@ -1444,7 +1444,7 @@ el.outerHTML = elhtml;
     "h1 { color: "+ settings.headercol +"; font-weight: bold; font-size: "+ settings.headerfontsize +"; font-family: Verdana; text-align: center; margin-left: -189px; margin-top: 4px; letter-spacing: 0px; line-height: 23.2px; }",
     "#wto_widget--update { background-color: "+ settings.btnbgcol +"; color: "+ settings.btntxtcol +"; font-size: "+ settings.btnfontsize +"; font-family: Verdana; font-weight: bold; text-align: center; border: none; border-radius: 4px; position: absolute; top: 18px; right: 115px; width: 215px; height: 40px; }",
     ".wto_closebtn_not { color: #7d7272; font-size: 41px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; float: right; margin-right: 22px; margin-top: 9px; }",
-    ".closebtn_not:hover { color: #45474a; }",
+    ".wto_closebtn_not:hover { color: #45474a; }",
     "#wto_widget_truckicon { position: absolute; top: -3px; left: 40px; z-index: 9999; }"
 ]);
   
@@ -1498,6 +1498,921 @@ el.outerHTML = elhtml;
   el.outerHTML = elhtml;
   var h = document.getElementById(elid).offsetHeight;
   body.style.marginTop = h + 'px';
+  })();
+  //!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+      'widget 12': {
+    friendlyName: 'Widget 12',
+    description: 'Footer promo',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#FFFFFF'},
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'Dont forget your 10% OFF! ' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#000000' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '21px' },
+        'CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: 'Content Text', value: 'Use Code:     ' },
+        { type: 'color', id: 'concol', name: 'concol', label: 'Content Colour', value: '#000000' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: 'Content Font Size', value: '18px' },
+        'PROMO CODE',
+        { type: 'text', id: 'promocodetxt', name: 'promocodetxt', label: 'Promo Code', value: ' SHOP10 ' },
+        { type: 'color', id: 'promocodecol', name: 'promocodecol', label: 'Content Colour', value: '#000000' },
+        { type: 'text', id: 'promocodefontsize', name: 'promocodefontsize', label: 'Content Font Size', value: '14px' },
+        { type: 'color', id: 'promocodeborcol', name: 'promocodeborcol', label: 'Content Colour', value: '#dad1d1' }
+    ],
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    confontsize: '${widget.confontsize}', //  content font size  
+    contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+    concol: '${widget.concol}', // content colour 
+    promocodefontsize: '${widget.promocodefontsize}', //  promo code font size  
+    promocodetxt: '${widget.promocodetxt.replace('\'', '\\\'')}', // promo code txt
+    promocodecol: '${widget.promocodecol}', // promo code colour 
+    promocodeborcol: '${widget.promocodeborcol}', // promo code border colour 
+    bgcol: '${widget.bgcol}' // background colour   
+  };
+  var elid = 'wto-widget--footerpromo--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--footerpromo').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-widget--footerpromo { z-index: 9999; position: fixed; left: 187px; bottom: 10px; width: 75%; height: 5%; background-color: "+ settings.bgcol +"; box-sizing: unset; margin: 0; padding: 9px; border-radius: 3px; }",
+    "h1 { z-index: 9999; font-size: "+ settings.headerfontsize +"; text-align: left; color: "+ settings.headercol +"; position: inherit; margin-top: 2px; margin-left: 164px; font-weight: bold; font-family: Georgia; line-height: 26px; letter-spacing: 0.5px; }",
+    "#wto_content { z-index: 9999; font-size: "+ settings.confontsize +"; text-align: left; color: "+ settings.concol +"; position: inherit; margin-top: 2px; margin-left: 536px; font-family: Georgia; line-height: 26px; letter-spacing: 0.5px; }",
+    "#wto_code_used { z-index: 9999; font-size: "+ settings.promocodefontsize +"; text-align: center; color: "+ settings.promocodecol +"; position: inherit; margin-top: -3px; margin-left: 730px; border: 1px solid "+ settings.promocodeborcol +"; padding: 6px; width: 79px; font-family: sans-serif; line-height: 26px; letter-spacing: 0.5px; }",
+    ".wto_closebtn_not { color: #7d7272; font-size: 25px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; float: right; margin-right: 31px; margin-top: 4px; }",
+    ".wto_closebtn_not:hover { color: #45474a; }"
+]);
+  
+  var body = document.getElementsByTagName('body')[0];
+  var el = document.createElement('div');
+  body.insertAdjacentElement('afterBegin', el);
+  var elhtml = '\<div id="'+ elid +'" class="wto-widget--footerpromo">\
+  <span class="wto_closebtn_not">×</span>\
+  <h1>'+ settings.headertxt +'</h1>\
+  <p id="wto_content">'+ settings.contxt +'</p>\
+  <p id="wto_code_used">'+ settings.promocodetxt +'</p>\
+  </div>\
+  ';
+  el.outerHTML = elhtml;
+
+  })();
+  //!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+"widget 13": {
+    friendlyName: 'widget 13',
+    description: 'promo countdown pop up',
+    fields: [
+        'HEADER',
+         { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: '20% OFF %<br> Free Shipping' },
+         { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '30px' },
+        ' TOP CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: ' Top Content Text', value: 'When you complete your order in...' },
+        { type: 'color', id: 'concol', name: 'concol', label: ' Top Content Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: ' Top Content Font Size', value: '15px' },
+        ' BOTTOM CONTENT',
+        { type: 'text', id: 'bcontxt', name: 'bcontxt', label: 'Bottom Content Text', value: 'No thanks, Ill pay full price' },
+        { type: 'color', id: 'bconcol', name: 'bconcol', label: 'Bottom Content Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'bconfontsize', name: 'bconfontsize', label: 'Bottom Content Font Size', value: '10px' },
+        'BUTTON',
+        { type: 'text', id: 'btntxt', name: 'btntxt', label: 'Button Text', value: 'GET MY 20% OFF' },
+        { type: 'color', id: 'btntxtcol', name: 'btntxtcol', label: 'Button Text Colour', value: '#30B6DF' },
+        { type: 'color', id: 'btnbgcol', name: 'btnbgcol', label: 'Button Background Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'btnfontsize', name: 'btnfontsize', label: 'Button Font Size', value: '15px' },
+        'COUNTDOWN TIMER',
+        { type: 'checkbox', id: 'useCountdown', name: 'useCountdown', label: 'Include Countdown?', value: false }, 
+        { type: 'datetime-local', id: 'myDate', name: 'myDate', label: 'End date & time', value: 'yyyy/mm/dd hh:mm:ss' }
+  
+    ],
+    
+    js_build: function(widget){
+        
+        console.log(widget);
+        
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  
+  var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    confontsize: '${widget.confontsize}', //  content font size  
+    contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+    concol: '${widget.concol}', // content colour 
+    bconfontsize: '${widget.bconfontsize}', //  content font size  
+    bcontxt: '${widget.bcontxt.replace('\'', '\\\'')}', // content txt
+    bconcol: '${widget.bconcol}', // content colour 
+    btntxt : '${widget.btntxt.replace('\'', '\\\'')}', // button txt
+    btntxtcol: '${widget.btntxtcol}', // button txt colour
+    btnbgcol: '${widget.btnbgcol}', // button colour
+    btnfontsize: '${widget.btnfontsize}', // button font size
+    myDate: '${widget.myDate}'
+  };
+  var elid = 'wto-widget--countdowntimerpromo--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--countdowntimerpromo').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+css.add([
+    ".wto-widget--countdowntimerpromo { z-index: 9999; margin: 5px; padding: 25px; position: fixed; bottom: 10px; left: 10px; border: none; box-sizing: unset; }",
+    "#bg { z-index: 9999; margin: 5px; padding: 25px; position: fixed; bottom: 10px; left: 10px; height: 320px; width: 300px; border-radius: 41px; border: none; box-sizing: unset; }",
+    "h1 { z-index: 9999; font-size: "+ settings.headerfontsize +"; font-weight: bold; font-family: Georgia; color: "+ settings.headercol +"; bottom: 249px; left: 61px; position: inherit; text-align: center; line-height: 1.1; margin: 17px; }",
+    "#wto_content { z-index: 9999; font-size: "+ settings.confontsize +"; font-weight: bold; font-family: Georgia; color: "+ settings.concol +"; bottom: 229px; margin-left: 16px; position: inherit; text-align: center; line-height: 1.1; margin-bottom; 1px; }",
+    "#wto_endmessage { z-index: 9999; font-size: "+ settings.bconfontsize +"; font-weight: bold; font-family: Georgia; color: "+ settings.bconcol +"; bottom: 52px; margin-left: 77px; position: inherit; text-align: center; line-height: 1.1; }",
+    "#wto_cd_btn { z-index: 9999; font-size: "+ settings.btnfontsize +"; font-family: Georgia; color: "+ settings.btntxtcol +"; bottom: 90px; margin-left: 45px; position: inherit; text-align: center; line-height: 1.1; background: "+ settings.btnbgcol +"; border: none; border-radius: 3px; height: 30px; width: 209px; }",
+    ".wto_closebtn_not { color: #FFFFFF; font-size: 25px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; position: inherit; bottom: 330px; left: 310px; }",
+    ".wto_closebtn_not:hover { color: #45474a; }"
+]);
+
+  var body = document.getElementsByTagName('body')[0];
+  var el = document.createElement('div');
+  body.insertAdjacentElement('afterBegin', el);
+  var elHTML = '<div id="'+ elid +'" class="wto-widget--countdowntimerpromo"><img id="bg" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/bluebg.jpg"><span class="wto_closebtn_not">×</span><h1>'+ settings.headertxt +'</h1><p id="wto_content">'+ settings.contxt +'</p><button type="button" id="wto_cd_btn">'+ settings.btntxt +'</button><p id="wto_endmessage">'+ settings.bcontxt+'</p>`;
+  
+  if(widget.useCountdown){
+  str += ` + <span id="'+ elid +'--clock" style="font-size: 35px; font-weight: bold; font-family: Georgia; color: #000000; position: fixed; bottom: 162px; left: 57px; z-index: 9999;"></span><span id="'+ elid +'--message"></span>`;
+  }
+  
+  str += `+ </div>';
+  el.outerHTML = elHTML;
+  
+  var getTimeRemaining = function(endtime) {
+  var t = Date.parse(endtime) - (new Date()).getTime();
+  console.log(t);
+  
+  var seconds = Math.floor( (t/1000) % 60 );
+  var minutes = Math.floor( (t/(1000*60)) % 60);
+  var hours = Math.floor( (t/(1000*60*60)) % 24);
+  var days = Math.floor( t/(1000*60*60*24) );
+  var totalhrs = hours+ (days*24);
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds,
+    'totalhrs': totalhrs
+  };
+  }
+  
+  var initializeClock = function() {
+  var timer = document.getElementById(elid +'--clock');
+  var updateTimer = function(){
+    var t = getTimeRemaining(settings.myDate);
+    if(t.total<=0){
+        clearInterval(countdownTimer);
+        document.getElementById(elid+"--message").innerHTML = "ENDED";
+        timer.innerHTML.style.display = "none";
+    } else {
+        timer.innerHTML = '<mark style="background-color: #ffffff; border-radius: 5px; padding: 7px">'+ t.totalhrs + ' Hr'+ '</mark>' + ':' + '<mark style="background-color: #ffffff; border-radius: 5px; padding: 7px">' + t.minutes + ' Min' +'</mark>';
+    }
+  };
+  updateTimer();
+  
+  var intvl = setInterval(updateTimer, 1000);
+  };
+  initializeClock();
+  
+  })();
+  //!-##${widget.widgetType}--END##`;
+        
+        return str;
+    }
+  },
+        "Widget 14": {
+    friendlyName: 'Widget 14',
+    description: 'A small bar across the top of your page. promo and countdown timer',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'background-image', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: 'linear-gradient(40deg, green ,white, white, white, green)'},
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'Only today! Dont miss out!' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#000000' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '30px' },
+        'CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: ' Top Content Text', value: 'Happy Friday! 10% off shopwide.' },
+        { type: 'color', id: 'concol', name: 'concol', label: ' Top Content Colour', value: '#000000' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: ' Top Content Font Size', value: '15px' },
+        'PROMO TEXT',
+        { type: 'color', id: 'promotxtcol', name: 'promotxtcol', label: 'Promo Text Colour', value: '#000000' },
+        { type: 'text', id: 'promotxtfontsize', name: 'promotxtfontsize', label: 'Promo Text Font Size', value: '17px' },
+        'PROMO TEXT',
+        { type: 'text', id: 'promocodetxt', name: 'promocodetxt', label: 'Promo Code', value: 'LUCKYCHECKOUT' },
+        { type: 'color', id: 'promocodebgcol', name: 'promocodebgcol', label: 'Promo Code Background Colour', value: '#d9d4c5' },
+        'COUNTDOWN TIMER',
+        { type: 'checkbox', id: 'useCountdown', name: 'useCountdown', label: 'Include Countdown?', value: false }, 
+        { type: 'datetime-local', id: 'myDate', name: 'myDate', step:'2', label: 'End date & time', value: 'yyyy/mm/dd hh:mm:ss' }
+  
+    ],
+    
+    js_build: function(widget){
+        
+        console.log(widget);
+        
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  // Create a Hello Bar
+  (function(){
+  
+  var settings = {
+  myDate: '${widget.myDate}',
+  bgcol: '${widget.bgcol}', // background colour 
+  headerfontsize: '${widget.headerfontsize}', // header font size  
+  headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+  headercol: '${widget.headercol}', // header colour 
+  confontsize: '${widget.confontsize}', //  content font size  
+  contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+  concol: '${widget.concol}', // content colour 
+  promocodetxt: '${widget.promocodetxt.replace('\'', '\\\'')}', // promo code txt
+  promocodebgcol: '${widget.promocodebgcol}', // promo code background colour 
+  promotxtfontsize: '${widget.promotxtfontsize}', //  promo txt font size  
+  promotxtcol: '${widget.promotxtcol}' // promo txt colour 
+  };
+  
+  var elid = 'wto-widget--greencountdownbar--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--greencountdownbar').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+css.add([
+  ".wto-widget--greencountdownbar { padding: 38px; margin:0; width: 100%; background-image: "+ settings.bgcol +"; z-index: 99999999; line-height: '+ (parseInt(14px)*1.5) +'px; top: 0; left: 0; position: fixed; }",
+  "#wto_content { position: inherit; top: 0; font-size: "+ settings.confontsize +"; letter-spacing: 0; line-height: 1; font-family: sans-serif; color: "+settings.concol +"; left: 126px; margin-top: 15px; }",
+  "h1{ position: inherit; top: 5px; line-height: 1.5; letter-spacing: 0; left: 52px; font-family: sans-serif; color: "+ settings.headercol +"; font-weight: bold; font-size: "+ settings.headerfontsize +"; margin-top: 24px; }",
+  "#wto_promotxt { position: inherit; top: 2px; right: 95px; font-size: "+ settings.promotxtfontsize +"; font-family: sans-serif; line-height: 1; letter-spacing: 0; color: "+ settings.promotxtcol +"; margin-top: 27px; }",
+  ".wto_promocode { padding: 10px; text-align: center; border-radius: 6px; background: "+ settings.promocodebgcol +"; font-weight: bold; }",
+  ".wto_closebtn_not { color: #000000; font-weight: bold; font-size: 20px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; position: inherit; top: 4px; right: 12px; }",
+  ".wto_closebtn_not:hover { color: #45474a; }"
+]);
+
+  var body = document.getElementsByTagName('body')[0];
+  var el = document.createElement('div');
+  body.insertAdjacentElement('afterBegin', el);
+  var elHTML = '<div id="'+ elid +'" class="wto-widget--greencountdownbar"><span class="wto_closebtn_not">×</span><p id="wto_content">'+ settings.contxt +'</p><h1>'+ settings.headertxt +'</h1><p id="wto_promotxt">Hurry! Use code: <span class="wto_promocode">'+ settings.promocodetxt +'</span> at checkout</p>`;
+  
+  if(widget.useCountdown){
+  str += `  <span id="'+ elid +'--clock" style="position: fixed;  top: 25px; left: 650px; font-size: 25px; font-weight: bold; font-family: sans-serif; text-align: center;"></span><span id="'+ elid +'--message"></span>`;
+  }
+  
+  str += ` </div>';
+  el.outerHTML = elHTML;
+  
+  var h = document.getElementById(elid).offsetHeight;
+  body.style.marginTop = h + 'px';
+  
+  if(settings.existingNavToMoveDown && settings.existingNav_method){
+  var el = document.querySelector(settings.existingNavToMoveDown);
+  el.style[settings.existingNav_method] = h + 'px';
+  }
+  
+  var getTimeRemaining = function(endtime) {
+  var t = Date.parse(endtime) - (new Date()).getTime();
+  console.log(t);
+  
+  var seconds = Math.floor( (t/1000) % 60 );
+  var minutes = Math.floor( (t/(1000*60)) % 60);
+  var hours = Math.floor( (t/(1000*60*60)) % 24);
+  var days = Math.floor( t/(1000*60*60*24) );
+  
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+  }
+  
+  var initializeClock = function() {
+  var timer = document.getElementById(elid +'--clock');
+  var updateTimer = function(){
+    var t = getTimeRemaining(settings.myDate);
+    if(t.total<=0){
+        clearInterval(countdownTimer);
+        document.getElementById(elid+"--message").innerHTML = "ENDED";
+        timer.innerHTML.style.display = "none";
+    } else {
+        timer.innerHTML = '<mark style="color: #545147; text-align: center; background-color: #ffffff; border-radius: 3px; border:1px solid #bab5a2; padding: 10px;"> ' + t.days + '</mark>' + ':' + '<mark style="color: #545147; text-align: center; background-color: #ffffff; border-radius: 3px; border:1px solid #bab5a2; padding: 10px;"> ' + t.hours + '</mark>' + ':' + '<mark style="color: #545147; text-align: center; background-color: #ffffff; border-radius: 3px; border:1px solid #bab5a2; padding: 10px;:"> ' + t.minutes + '</mark>' + ':' + '<mark style="color: #545147; text-align: center; background-color: #ffffff; border-radius: 3px; border:1px solid #bab5a2; padding: 10px;"> ' + t.seconds + '</mark>';
+    }
+  };
+  updateTimer();
+  
+  var intvl = setInterval(updateTimer, 1000);
+  };
+  initializeClock();
+  
+  })();
+  //!-##${widget.widgetType}--END##`;
+        
+        return str;
+    }
+  },
+        'widget 15': {
+    friendlyName: 'Widget 15',
+    description: 'Scratch game promo',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#ebbcf3'},
+        'HEADER',
+        { type: 'text', id: 'headertxt', name: 'headertxt', label: 'Header Text', value: 'SCRATCH & WIN 30% OFF' },
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#ffff00' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '34px' },
+        'CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: 'Content Text', value: 'Company name or logo' },
+        { type: 'color', id: 'concol', name: 'concol', label: 'Content Colour', value: '#000000' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: 'Content Font Size', value: '18px' },
+        { type: 'color', id: 'conbgcol', name: 'conbgcol', label: 'Content Background Colour', value: '#ffffff' },
+        'BOTTOM TEXT',
+        { type: 'text', id: 'bottxt', name: 'bottxt', label: 'Bottom Content Text', value: 'Scratch Picture' },
+        { type: 'color', id: 'botcol', name: 'botcol', label: 'Bottom Content Colour', value: '#000000' },
+        { type: 'text', id: 'botfontsize', name: 'botfontsize', label: 'Bottom Content Font Size', value: '30px' },
+        { type: 'color', id: 'botbgcol', name: 'botbgcol', label: ' Bottom Content Background Colour', value: '#00b3ff' },
+        'PROMO CODE',
+        { type: 'text', id: 'promocodetxt', name: 'promocodetxt', label: 'Promo Code', value: 'STORE210' },
+        { type: 'color', id: 'promocodecol', name: 'promocodecol', label: 'Promo Code Text Colour', value: '#000000' },
+        { type: 'text', id: 'promocodefontsize', name: 'promocodefontsize', label: 'Promo Code Font Size', value: '50px' },
+        { type: 'color', id: 'promocodebgcol', name: 'promocodebgcol', label: 'Promo Code Background Colour', value: '#9EE2FF' },
+        'PROMO HEADER',
+        { type: 'text', id: 'promoheadtxt', name: 'promoheadtxt', label: 'Promo Header Text', value: 'The secret code is:' },
+        { type: 'color', id: 'promoheadcol', name: 'promoheadcol', label: 'Promo Header Text Colour', value: '#000000' },
+        { type: 'text', id: 'promoheadfontsize', name: 'promoheadfontsize', label: 'Promo Header Font Size', value: '33px' },
+        'EMAIL BORDER COLOUR',
+        { type: 'color', id: 'emborcol', name: 'emborcol', label: 'Email Border Colour', value: '#ffff00' },
+        'SCRATCH BORDER COLOUR',
+        { type: 'color', id: 'scborcol', name: 'scborcol', label: 'Scratch Border Colour', value: '#2b2bf9' }
+    ],
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = {
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    headertxt: '${widget.headertxt.replace('\'', '\\\'')}', // header txt
+    headercol: '${widget.headercol}', // header colour 
+    confontsize: '${widget.confontsize}', //  content font size  
+    contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+    concol: '${widget.concol}', // content colour 
+    conbgcol: '${widget.conbgcol}', // content background colour 
+    botfontsize: '${widget.botfontsize}', //  bottom content font size  
+    bottxt: '${widget.bottxt.replace('\'', '\\\'')}', // bottom content txt
+    botcol: '${widget.botcol}', // bottom content colour 
+    botbgcol: '${widget.botbgcol}', // botttom content background colour 
+    promocodefontsize: '${widget.promocodefontsize}', //  promo code font size  
+    promocodetxt: '${widget.promocodetxt.replace('\'', '\\\'')}', // promo code txt
+    promocodecol: '${widget.promocodecol}', // promo code colour 
+    promocodebgcol: '${widget.promocodebgcol}', // promo code background colour 
+    promoheadfontsize: '${widget.promoheadfontsize}', //  promo header font size  
+    promoheadtxt: '${widget.promoheadtxt.replace('\'', '\\\'')}', // promo headet txt
+    promoheadcol: '${widget.promoheadcol}', // promo header colour 
+    emborcol: '${widget.emborcol}', // email border colour 
+    scborcol: '${widget.scborcol}', // scratch border colour 
+    bgcol: '${widget.bgcol}' // background colour   
+  };
+  var elid = 'wto-widget--footerpromo--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--footerpromo').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-widget--scratchpromo { position: fixed; top: 88px; left: 443px; width: 613px; height: 355px; margin: 12px; padding: 20px; border: 3px solid #000000; border-radius: 15px; box-sizing: unset; z-index: 9999; background-color: "+ settings.bgcol +"; }",
+    ".wto-header { font-size: "+ settings.headerfontsize +"; font-family: Gerogia; font-weight: bold; line-height: 1.3; letter-spacing: .5; position: inherit; left: 776px; margin: 10px; padding: 10px; width: 301px; text-align: center; color: "+ settings.headercol +"; text-shadow: 3px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 4px 1px 0 #000; }",
+    ".wto_closebtn_not { float: right; font-size: 29px; margin-top: -8px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; }",
+    ".wto-bottomcontent { font-size: "+ settings.botfontsize +"; font-family: Gerogia; font-weight: bold; line-height: 1; letter-spacing: 0; position: inherit; left: 800px; top: 424px; margin: 5px; padding: 10px; color: "+ settings.botcol +"; background-color: "+ settings.botbgcol +"; border-radius: 24px; width: 265px; text-align: center; }",
+    "#email { border-radius: 8px; position: inherit; left: 807px; top: 354px; height: 40px; width: 265px; border: 6px solid "+ settings.emborcol +"; box-sizing: unset; margin: 0; padding: 2px; font-size: 15px; font-family: sans-serif; text-align: center; }",
+    ".wto_content { position: inherit; left: 810px; top: 265px; text-align: center; margin: 0; padding: 15px; background-color: "+ settings.conbgcol +"; color: "+ settings.concol +"; font-size: "+ settings.confontsize +"; font-family: Gerogia; line-height: 1.4; letter-spacing: 0.3; width: 248px; }",
+    " #bridge { display: block; margin: 0 auto; background-size: cover; width: 300px; max-width: 300px; height: auto; cursor: crosshair; position: inherit; border: 5px solid "+ settings.scborcol +"; border-radius: 6px; margin-top: 22px; z-index: 9999; }",
+    "h1 { font-size: "+ settings.promoheadfontsize +"; font-family: Gerogia; font-weight: bold; line-height: 1; letter-spacing: 0; margin: 0; padding: 0; color: "+ settings.promoheadcol +"; width: 265px; text-align: center; margin-top: 99px; margin-left: 20px; }",
+    "h2 { font-size: "+ settings.promocodefontsize +"; font-family: Gerogia; font-weight: bold; line-height: 1; letter-spacing: 0; margin: 0; padding: 9px; color: "+ settings.promocodecol +"; background: "+ settings.promocodebgcol +"; border-radius: 7px; width: 245px; text-align: center; margin-top: 59px; margin-left: 21px; position: fixed; }"
+]);
+  
+  var body = document.getElementsByTagName('body')[0];
+  var el = document.createElement('div');
+  body.insertAdjacentElement('afterBegin', el);
+  var elhtml = '\<div id="'+ elid +'"  class="wto-widget--scratchpromo">\
+  <span class="wto_closebtn_not">&times;</span>\
+  <div class="wto-header">'+ settings.headertxt +'</div>\
+  <div class="wto_content">'+ settings.contxt +'</div>\
+  <input type="email" id="email" placeholder="Enter email" name="email">\
+  <div class="wto-bottomcontent">'+ settings.bottxt +'</div>\
+  <canvas id="bridge" width="300" height="300"></canvas>\
+  <form class="form">\
+      <h1>'+ settings.promoheadtxt +'</h1>\
+      <h2><code>'+ settings.promocodetxt +'</code></h2>\
+    </form>\
+  </div>\
+  ';
+  el.outerHTML = elhtml;
+    var bridge = document.getElementById("bridge"),
+    bridgeCanvas = bridge.getContext('2d'),
+    brushRadius = (bridge.width / 100) * 5,
+    img = new Image();
+    if (brushRadius < 50) { 
+      brushRadius = 50 
+    }
+
+    img.onload = function(){  
+        bridgeCanvas.drawImage(img, 0, 0, bridge.width, bridge.height);
+    }
+
+    img.loc = '';
+     img.filename = 'https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/greybg_1.jpg';
+    if (window.devicePixelRatio >= 2) {
+        var nameParts = img.filename.split('.');
+        img.src = img.loc + nameParts[0]+"-2x"+"."+nameParts[1];
+    }   
+    else {
+        img.src = img.loc + img.filename;
+    }
+
+    bridge.addEventListener("mousemove", function(e) {
+    var brushPos = getBrushPos(e.clientX, e.clientY);
+    var leftBut = detectLeftButton(e);
+    if (leftBut == 1) {
+        drawDot(brushPos.x, brushPos.y);
+        }
+    }, false);
+
+    bridge.addEventListener("touchmove", function(e) {
+        e.preventDefault();
+        var touch = e.targetTouches[0];
+        if (touch) {
+            var brushPos = getBrushPos(touch.pageX, touch.pageY);
+            drawDot(brushPos.x, brushPos.y);
+        }
+    }, false);
+
+    function detectLeftButton(event) {
+        if ('buttons' in event) {
+            return event.buttons === 1;
+        } 
+        else if ('which' in event) {
+            return event.which === 1;
+        } 
+        else {
+            return event.button === 1;
+        }
+    }
+
+    function getBrushPos(xRef, yRef) {
+        var bridgeRect = bridge.getBoundingClientRect();
+        return {
+            x: Math.floor((xRef - bridgeRect.left) / (bridgeRect.right - bridgeRect.left) * bridge.width),
+            y: Math.floor((yRef - bridgeRect.top) / (bridgeRect.bottom - bridgeRect.top) * bridge.height)
+        };
+    }
+
+    function drawDot(mouseX,mouseY) {
+        bridgeCanvas.beginPath();
+        bridgeCanvas.arc(mouseX, mouseY, brushRadius, 0, 2*Math.PI, true);
+        bridgeCanvas.fillStyle = '#000';
+        bridgeCanvas.globalCompositeOperation = "destination-out";
+        bridgeCanvas.fill();
+    }
+
+  })();
+  //!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        'widget 16': {
+    friendlyName: 'Widget 16',
+    description: 'emoji feedback',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'background-image', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: 'linear-gradient(400deg, #ffffff,#ffffff,#ffffff, #ffffff, #008000, #15ff15)'},
+        'BIG HEADER',
+        { type: 'text', id: 'bigheadertxt', name: 'bigheadertxt', label: 'Big Header Text', value: 'Before you leave, wed love to hear your feedback!' },
+        { type: 'color', id: 'bigheadercol', name: 'bigheadercol', label: 'Big Header Colour', value: '#000000' },
+        { type: 'text', id: 'bigheaderfontsize', name: 'bigheaderfontsize', label: 'Big Header Font Size', value: '21px' },
+        'SMALLER HEADER',
+        { type: 'text', id: 'smlheadertxt', name: 'smlheadertxt', label: 'Smaller Header Text', value: 'Thank you for your purchase! ' },
+        { type: 'color', id: 'smlheadercol', name: 'smlheadercol', label: 'Smaller Header Colour', value: '#000000' },
+        { type: 'text', id: 'smlheaderfontsize', name: 'smlheaderfontsize', label: 'Smaller Header Font Size', value: '13px' },
+        'CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: 'Content Text', value: 'How would you rate your shopping experience?' },
+        { type: 'color', id: 'concol', name: 'concol', label: 'Content Colour', value: '#000000' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: 'Content Font Size', value: '14px' },
+        'EMOJI COLOUR',
+        { type: 'color', id: 'outercol', name: 'outercol', label: 'Emoji Outer Colour & Facial Feature Colour', value: '#008000' },
+        { type: 'color', id: 'innercol', name: 'innercol', label: 'Emoji Inner Colour', value: '#FFFFFF' }
+    ],
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = {
+    bigheaderfontsize: '${widget.bigheaderfontsize}', // header font size  
+    bigheadertxt: '${widget.bigheadertxt.replace('\'', '\\\'')}', // header txt
+    bigheadercol: '${widget.bigheadercol}', // header colour 
+    smlheaderfontsize: '${widget.smlheaderfontsize}', // header font size  
+    smlheadertxt: '${widget.smlheadertxt.replace('\'', '\\\'')}', // header txt
+    smlheadercol: '${widget.smlheadercol}', // header colour 
+    confontsize: '${widget.confontsize}', //  content font size  
+    contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+    concol: '${widget.concol}', // content colour
+    innercol: '${widget.innercol}', // emoji outer colour
+    outercol: '${widget.outercol}', // emoji inner colour 
+    bgcol: '${widget.bgcol}' // background colour   
+  };
+  var elid = 'wto-widget--emojifeedback--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--emojifeedback').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-widget--emojifeedback { position: fixed; bottom: 10px; right: 10px; margin: 5px; z-index: 9999; box-sizing: unset; padding: 10px; border-radius: 21px; width: 320px; height: 340px; background-image: "+ settings.bgcol +"; }",
+    ".wto_closebtn_not { font-size: 24px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; color: #ffffff; position: inherit; bottom: 348px; right: 33px; }",
+    ".wto-smlheader { position: inherit; text-align: center; margin: 0px; bottom: 300px; font-size: "+ settings.smlheaderfontsize +"; font-weight: bold; font-family: Verdana; margin-left: 50px; z-index: 9999; line-height: 1.1; letter-spacing: 0; color: "+ settings.smlheadercol +"; box-sizing: unset; }",
+    ".wto-bigheader { position: inherit; text-align: center; margin: 0px; bottom: 209px; font-size: "+ settings.bigheaderfontsize +"; font-weight: bold; font-family: Verdana; margin-left: 18px; width: 280px; z-index: 9999; line-height: 1.1; letter-spacing: 0; color: "+ settings.bigheadercol +"; box-sizing: unset; }",
+    ".wto-content { z-index: 9999; bottom: 125px; margin-left: 40px; width: 243px; position: absolute; text-align: center; font-size: "+ settings.confontsize +"; font-family: Verdana; color: "+ settings.concol +"; line-height: 1.6; letter-spacing: 0; box-sizing: unset; }",
+    "svg { height: 65px; width: 65px; border: 4px solid "+ settings.outercol +"; border-radius: 44px; }",
+    ".wto-goodemoji { position: absolute; bottom: 34px; margin-left: 23px; box-sizing: unset; }",
+    ".wto-okayemoji { position: absolute; margin-left: 125px; bottom: 34px; box-sizing: unset; }",
+    ".wto-bademoji { position: absolute; margin-left: 225px; bottom: 34px; box-sizing: unset; }"
+]);
+  
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget--emojifeedback">\
+<span class="wto_closebtn_not">&times;</span>\
+<div class="wto-smlheader">'+ settings.smlheadertxt +'</div>\
+<div class="wto-bigheader">'+ settings.bigheadertxt +'</div>\
+<div class="wto-content">'+ settings.contxt +'</div>\
+<div class="wto-emoji-icons">\
+    <div class="wto-goodemoji">\
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">\
+            <g id="gold">\
+                    <radialGradient id="face_1_" cx="63.6" cy="216.9" r="56.9597" gradientTransform="matrix(1 0 0 1 0 -154)" gradientUnits="userSpaceOnUse">\
+                    <stop offset="0.5" style="stop-color:'+ settings.innercol +'"></stop>\
+                    <stop offset="0.92" style="stop-color:'+ settings.innercol +'"></stop>\
+                    <stop offset="1" style="stop-color:'+ settings.outercol +'"></stop>\
+                </radialGradient>\
+                <path id="face" style="fill:url(#face_1_);" d="M63.6,118.8c-27.9,0-58-17.5-58-55.9S35.7,7,63.6,7c15.5,0,29.8,5.1,40.4,14.4 c11.5,10.2,17.6,24.6,17.6,41.5s-6.1,31.2-17.6,41.4C93.4,113.6,79,118.8,63.6,118.8z"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M111.49,29.67c5.33,8.6,8.11,18.84,8.11,30.23c0,16.9-6.1,31.2-17.6,41.4 c-10.6,9.3-25,14.5-40.4,14.5c-18.06,0-37-7.35-48.18-22.94c10.76,17.66,31,25.94,50.18,25.94c15.4,0,29.8-5.2,40.4-14.5 c11.5-10.2,17.6-24.5,17.6-41.4C121.6,50.16,118.13,38.84,111.49,29.67z"></path>\
+            </g>\
+            <g id="facial_expressions">\
+                <g id="smiling-eyes-grinning-face">\
+                    <g id="eyes">\
+                        <path style="fill:'+ settings.outercol +';" d="M49,56.89l-0.15-0.2l-0.43-0.55l-0.53-0.57c-0.22-0.25-0.48-0.49-0.73-0.75s-0.56-0.51-0.84-0.72 c-0.26-0.2-0.54-0.39-0.84-0.54c-0.2-0.11-0.42-0.2-0.65-0.25c-0.07-0.01-0.14-0.01-0.21,0c0,0-0.06,0-0.09,0h-0.08 c0.12,0-0.27,0,0.27,0h-0.55c-0.15,0-0.05,0,0,0h0.08c0.08,0,0,0,0,0h-0.11c-0.23,0.05-0.45,0.13-0.66,0.25 c-0.29,0.16-0.58,0.34-0.84,0.54c-0.29,0.22-0.57,0.46-0.83,0.72c-0.53,0.51-1,1-1.3,1.39l-0.52,0.6l-0.23,0.27 c-1.44,1.61-3.87,1.87-5.62,0.61c-1.12-0.78-1.69-2.13-1.47-3.48c0,0,0.07-0.4,0.26-1.11c0.3-1.01,0.72-1.99,1.25-2.91 c0.85-1.5,2-2.81,3.38-3.85c0.91-0.7,1.92-1.26,3-1.65c0.3-0.12,0.61-0.21,0.92-0.29c0.33-0.1,0.66-0.17,1-0.23l0.61-0.09 l0.51-0.06h0.55h0.79h0.51c0.34,0,0.67,0.09,1,0.14c0.64,0.11,1.28,0.28,1.89,0.51c1.08,0.39,2.09,0.95,3,1.65 c1.38,1.04,2.53,2.35,3.38,3.85c0.31,0.52,0.58,1.07,0.8,1.63c0.19,0.45,0.35,0.9,0.48,1.37c0.07,0.24,0.13,0.48,0.16,0.72v0.25 c0.3,2.04-1.12,3.94-3.16,4.24c-0.05,0.01-0.1,0.01-0.15,0.02C51.39,58.61,49.93,58.03,49,56.89z"></path>\
+                        <path style="fill:'+ settings.outercol +';" d="M88.46,56.89l-0.16-0.2l-0.43-0.55l-0.53-0.57c-0.22-0.25-0.48-0.49-0.73-0.75 s-0.56-0.51-0.84-0.72c-0.26-0.2-0.54-0.39-0.84-0.54c-0.2-0.11-0.42-0.2-0.65-0.25c-0.07-0.01-0.14-0.01-0.21,0 c0,0-0.06,0-0.09,0H83.9c0.12,0-0.27,0,0.27,0h-0.55c-0.15,0-0.05,0,0,0h0.08c0.08,0,0,0,0,0h-0.11 c-0.23,0.05-0.45,0.13-0.66,0.25c-0.29,0.15-0.57,0.34-0.83,0.54c-0.3,0.22-0.58,0.46-0.84,0.72c-0.53,0.51-1,1-1.3,1.39 l-0.52,0.6l-0.22,0.27c-1.45,1.61-3.87,1.87-5.63,0.61c-1.12-0.78-1.69-2.13-1.47-3.48c0,0,0.07-0.4,0.27-1.11 c0.3-1.02,0.71-2,1.25-2.91c0.85-1.5,1.99-2.81,3.37-3.85c0.91-0.7,1.92-1.26,3-1.65c0.3-0.12,0.61-0.21,0.92-0.29 c0.33-0.1,0.66-0.17,1-0.23l0.62-0.09l0.5-0.06h0.55h0.79h0.51c0.34,0,0.67,0.09,1,0.14c0.65,0.11,1.28,0.28,1.89,0.51 c1.08,0.39,2.09,0.95,3,1.65c1.38,1.04,2.53,2.35,3.38,3.85c0.31,0.52,0.58,1.07,0.8,1.63c0.19,0.44,0.35,0.89,0.48,1.35 c0.07,0.24,0.13,0.48,0.16,0.72v0.25c0.32,2.04-1.08,3.95-3.12,4.27c-0.03,0-0.06,0.01-0.09,0.01 C90.91,58.65,89.4,58.07,88.46,56.89z"></path>\
+                    </g>\
+                </g>\
+                <path style="fill:'+ settings.outercol +';" d="M102.07,71.62c-1.4-2.53-4.44-3.64-7.14-2.62c-10.26,2.99-20.9,4.48-31.59,4.43 C52.65,73.48,42.01,71.99,31.75,69c-2.69-1.02-5.73,0.08-7.13,2.6c-1.36,2.51-0.38,5.42,0.77,7.93 c6.42,14.1,20.57,22.54,37.87,22.59h0.16c17.3,0,31.45-8.49,37.88-22.59C102.44,77,103.43,74.13,102.07,71.62z"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M63.42,100.89"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M63.49,74.7"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M63.49,74.7"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M63.42,100.89"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M79.35,98.14c-0.37-0.34-0.75-0.65-1.13-1c-4.08-3.59-9.36-5.52-14.8-5.41 C57.82,91.64,52.37,93.5,48,97c-0.38,0.31-0.78,0.61-1.15,1s-0.57,0.67-0.81,1c5.5,2.15,11.36,3.25,17.27,3.22h0.16 c5.66,0,11.27-1.01,16.57-3C79.84,98.84,79.61,98.48,79.35,98.14z"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M94.93,69c-10.26,2.99-20.9,4.48-31.59,4.43C52.65,73.48,42.01,71.99,31.75,69 c-2.69-1.02-5.73,0.08-7.13,2.6c-0.2,0.38-0.36,0.78-0.46,1.19c0.33,0.17,0.71,0.34,1.16,0.52c12.04,6.03,25.35,9.09,38.81,8.93 c12.91,0.15,25.67-2.66,37.33-8.2c0.47-0.2,0.86-0.39,1.21-0.57c-0.08-0.65-0.29-1.29-0.6-1.87C100.67,69.08,97.63,67.97,94.93,69z"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M102.11,71.63c-1.42-2.53-4.47-3.65-7.19-2.63c-10.26,2.99-20.9,4.48-31.58,4.43 C52.65,73.48,42.01,71.99,31.75,69c-2.69-1.02-5.73,0.08-7.13,2.6c-1.36,2.51-0.38,5.42,0.77,7.93c0.51,1.13,1.08,2.24,1.71,3.31 c0,0-2.1-7.78-0.28-10.04c0.62-0.96,1.66-1.56,2.8-1.62c0.47,0,0.93,0.08,1.38,0.22c10.44,3.07,21.27,4.62,32.16,4.6h0.35 c10.89,0.02,21.72-1.53,32.16-4.6c0.45-0.14,0.91-0.22,1.38-0.22c1.14,0.06,2.19,0.66,2.81,1.62c1.85,2.26-0.28,10.07-0.28,10.07 c0.62-1.07,1.24-2.17,1.76-3.31C102.48,77.05,103.47,74.15,102.11,71.63z"></path>\
+            </g>\
+            </svg>\
+    </div>\
+    <div class="wto-okayemoji">\
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">\
+            <g id="gold">\
+                <radialGradient id="face_1_" cx="63.6" cy="2584.8999" r="56.9597" gradientTransform="matrix(1 0 0 1 0 -2522)" gradientUnits="userSpaceOnUse">\
+                <stop offset="0.5" style="stop-color:'+ settings.innercol +'"></stop>\
+                <stop offset="0.92" style="stop-color:'+ settings.innercol +'"></stop>\
+                <stop offset="1" style="stop-color:'+ settings.outercol +'"></stop>\
+            </radialGradient>\
+            <path id="face" style="fill:url(#face_1_);" d="M63.6,118.8c-27.9,0-58-17.5-58-55.9S35.7,7,63.6,7c15.5,0,29.8,5.1,40.4,14.4 c11.5,10.2,17.6,24.6,17.6,41.5s-6.1,31.2-17.6,41.4C93.4,113.6,79,118.8,63.6,118.8z"></path>\
+            <path style="fill:'+ settings.outercol +';" d="M111.49,29.67c5.33,8.6,8.11,18.84,8.11,30.23c0,16.9-6.1,31.2-17.6,41.4 c-10.6,9.3-25,14.5-40.4,14.5c-18.06,0-37-7.35-48.18-22.94c10.76,17.66,31,25.94,50.18,25.94c15.4,0,29.8-5.2,40.4-14.5 c11.5-10.2,17.6-24.5,17.6-41.4C121.6,50.16,118.13,38.84,111.49,29.67z"></path>\
+            <path style="fill:'+ settings.outercol +';" d="M111.49,29.67c5.33,8.6,8.11,18.84,8.11,30.23c0,16.9-6.1,31.2-17.6,41.4 c-10.6,9.3-25,14.5-40.4,14.5c-18.06,0-37-7.35-48.18-22.94c10.76,17.66,31,25.94,50.18,25.94c15.4,0,29.8-5.2,40.4-14.5 c11.5-10.2,17.6-24.5,17.6-41.4C121.6,50.16,118.13,38.84,111.49,29.67z"></path>\
+            </g>\
+            <g id="facial_expressions">\
+            <g id="neutral-face">\
+        <path id="mouth" style="fill:'+ settings.outercol +';" d="M89,88H39c-2.21,0-4-1.79-4-4s1.79-4,4-4h50c2.21,0,4,1.79,4,4S91.21,88,89,88z"></path>\
+    </g>\
+    <path style="fill:'+ settings.outercol +';" d="M44.67,45.94L44.67,45.94c-4.19,0-8,3.54-8,9.42s3.81,9.41,8,9.41l0,0c4.19,0,8-3.54,8-9.41 S48.86,45.94,44.67,45.94z"></path>\
+    <g id="peepers">\
+        <path style="fill:'+ settings.outercol +';" d="M44.28,49.87L44.28,49.87c-1.42-0.68-3.13-0.08-3.82,1.34c-0.53,1.11-0.29,2.44,0.6,3.3l0,0 c1.42,0.68,3.13,0.08,3.82-1.34C45.41,52.06,45.17,50.73,44.28,49.87z"></path>\
+    </g>\
+    <path style="fill:'+ settings.outercol +';" d="M83,45.94L83,45.94c-4.19,0-8,3.54-8,9.42s3.81,9.41,8,9.41l0,0c4.19,0,8-3.54,8-9.41 S87.21,45.94,83,45.94z"></path>\
+    <g id="peepers-2">\
+        <path style="fill:'+ settings.outercol +';" d="M82.63,49.87L82.63,49.87c-1.42-0.68-3.13-0.08-3.82,1.34c-0.53,1.11-0.29,2.44,0.6,3.3l0,0 c1.42,0.68,3.13,0.08,3.82-1.34C83.76,52.06,83.52,50.73,82.63,49.87z"></path>\
+    </g>\
+</g>\
+</svg>\
+    </div>\
+    <div class="wto-bademoji">\
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">\
+            <g id="gold">\
+                    <radialGradient id="face_1_" cx="63.6" cy="1400.9" r="56.9597" gradientTransform="matrix(1 0 0 1 0 -1338)" gradientUnits="userSpaceOnUse">\
+                    <stop offset="0.5" style="stop-color:'+ settings.innercol +'"></stop>\
+                    <stop offset="0.92" style="stop-color:'+ settings.innercol +'"></stop>\
+                    <stop offset="1" style="stop-color:'+ settings.outercol +'"></stop>\
+                </radialGradient>\
+                <path id="face" style="fill:url(#face_1_);" d="M63.6,118.8c-27.9,0-58-17.5-58-55.9S35.7,7,63.6,7c15.5,0,29.8,5.1,40.4,14.4 c11.5,10.2,17.6,24.6,17.6,41.5s-6.1,31.2-17.6,41.4C93.4,113.6,79,118.8,63.6,118.8z"></path>\
+                <path style="fill:'+ settings.outercol +';" d="M111.49,29.67c5.33,8.6,8.11,18.84,8.11,30.23c0,16.9-6.1,31.2-17.6,41.4 c-10.6,9.3-25,14.5-40.4,14.5c-18.06,0-37-7.35-48.18-22.94c10.76,17.66,31,25.94,50.18,25.94c15.4,0,29.8-5.2,40.4-14.5 c11.5-10.2,17.6-24.5,17.6-41.4C121.6,50.16,118.13,38.84,111.49,29.67z"></path>\
+            </g>\
+            <g id="facial_expressions">\
+                <path style="fill:'+ settings.outercol +';" d="M44,40.94L44,40.94c-4.19,0-8,3.54-8,9.42s3.81,9.41,8,9.41l0,0c4.2,0,8-3.54,8-9.41 S48.24,40.94,44,40.94z"></path>\
+                <g id="peepers">\
+                    <path style="fill:'+ settings.outercol +';" d="M43.65,44.87L43.65,44.87c-1.42-0.68-3.13-0.08-3.82,1.34c-0.53,1.11-0.29,2.44,0.6,3.3l0,0 c1.42,0.68,3.13,0.08,3.82-1.34C44.78,47.06,44.54,45.73,43.65,44.87z"></path>\
+                </g>\
+                <path style="fill:'+ settings.outercol +';" d="M82.4,40.94L82.4,40.94c-4.19,0-8,3.54-8,9.42s3.81,9.41,8,9.41l0,0c4.19,0,8-3.54,8-9.41 S86.59,40.94,82.4,40.94z"></path>\
+                <g id="peepers-2">\
+                    <path style="fill:'+ settings.outercol +';" d="M82,44.87L82,44.87c-1.42-0.68-3.13-0.08-3.82,1.34c-0.53,1.11-0.29,2.44,0.6,3.3l0,0 c1.42,0.68,3.13,0.08,3.82-1.34C83.13,47.06,82.89,45.73,82,44.87z"></path>\
+                </g>\
+                <path id="mouth" style="fill:'+ settings.outercol +';" d="M64.18,78.19c9.07-0.08,17.75,3.74,23.82,10.48c0.46,0.53,0.57,1.28,0.28,1.92 c-0.29,0.65-0.93,1.07-1.64,1.08l0,0c-0.32,0-0.64-0.09-0.92-0.25c-4.82-2.77-12.88-6.21-21.52-6.21h-0.14 c-8.63,0-16.7,3.44-21.51,6.21c-0.28,0.16-0.6,0.25-0.92,0.25l0,0c-0.71-0.01-1.34-0.43-1.63-1.08c-0.3-0.64-0.19-1.39,0.28-1.92 c6.07-6.74,14.74-10.56,23.81-10.48"></path>\
+            </g>\
+            </svg>\
+    </div>\
+</div>\
+</div>\
+';
+  el.outerHTML = elhtml;
+
+  })();
+  //!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        'widget 17': {
+    friendlyName: 'Widget 17',
+    description: 'VIP sign up 3 step',
+    fields: [
+        "SAME FOR ALL",
+        { type: 'color', id: 'headercol', name: 'headercol', label: 'Header Colour', value: '#3030a2' },
+        { type: 'text', id: 'headerfontsize', name: 'headerfontsize', label: 'Header Font Size', value: '30px' },
+        { type: 'color', id: 'concol', name: 'concol', label: 'Content Colour', value: '#3030a2' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: 'Content Font Size', value: '19px' },
+        { type: 'color', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: '#ffffff'},
+        { type: 'color', id: 'borcol', name: 'borcol', label: 'Border Colour', value: '#ffffff'},
+        "STEP 1",
+        'HEADER',
+        { type: 'text', id: 'headertxt1', name: 'headertxt1', label: 'Header Text', value: 'Join our VIP Club!' },
+        'CONTENT',
+        { type: 'text', id: 'contxt1', name: 'contxt1', label: 'Content Text', value: 'Company content & information' },
+        "YES BUTTON",
+        { type: 'text', id: 'yesbtntxt', name: 'yesbtntxt', label: 'Button Text', value: 'YES' },
+        { type: 'color', id: 'yesbtntxtcol', name: 'yesbtntxtcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'yesbtnbgcol', name: 'yesbtnbgcol', label: 'Button Background Colour', value: '#3030a2' },
+        { type: 'text', id: 'yesbtnfontsize', name: 'yesbtnfontsize', label: 'Button Font Size', value: '25px' },
+        { type: 'text', id: 'yesbtnsmltxt', name: 'yesbtnsmltxt', label: 'Button Small Text', value: 'I want to become a VIP member!' },
+        { type: 'text', id: 'yesbtnsmlfontsize', name: 'yesbtnsmlfontsize', label: 'Button Small Text Font Size', value: '8px' },
+        "NO BUTTON",
+        { type: 'text', id: 'nobtntxt', name: 'nobtntxt', label: 'Button Text', value: 'NO' },
+        { type: 'color', id: 'nobtntxtcol', name: 'nobtntxtcol', label: 'Button Text Colour', value: '#3030a2' },
+        { type: 'color', id: 'nobtnbgcol', name: 'nobtnbgcol', label: 'Button Background Colour', value: '#FFFFFF' },
+        { type: 'text', id: 'nobtnfontsize', name: 'nobtnfontsize', label: 'Button Font Size', value: '25px' },
+        { type: 'text', id: 'nobtnsmltxt', name: 'nobtnsmltxt', label: 'Button Small Text', value: 'Not right now thanks!' },
+        { type: 'text', id: 'nobtnsmlfontsize', name: 'nobtnsmlfontsize', label: 'Button Small Text Font Size', value: '8px' },
+        "STEP 2",
+        'HEADER',
+        { type: 'text', id: 'headertxt2', name: 'headertxt2', label: 'Header Text', value: 'Enter your email' },
+        'CONTENT',
+        { type: 'text', id: 'contxt2', name: 'contxt2', label: 'Content Text', value: 'Company content & information' },
+        "JOIN NOW BUTTON",
+        { type: 'text', id: 'jnbtntxt', name: 'jnbtntxt', label: 'Button Text', value: 'Join now' },
+        { type: 'color', id: 'jnbtntxtcol', name: 'jnbtntxtcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'jnbtnbgcol', name: 'jnbtnbgcol', label: 'Button Background Colour', value: '#3030a2' },
+        { type: 'text', id: 'jnbtnfontsize', name: 'jnbtnfontsize', label: 'Button Font Size', value: '23px' },
+        "INPUT BORDER COLOUR",
+        { type: 'color', id: 'inborcol', name: 'inborcol', label: 'Input Border Colour', value: '#3030a2' },
+        "STEP 3",
+        'HEADER',
+        { type: 'text', id: 'headertxt3', name: 'headertxt3', label: 'Header Text', value: 'Welcome to the VIP!' },
+        'CONTENT',
+        { type: 'text', id: 'contxt3', name: 'contxt3', label: 'Content Text', value: 'Company content & information' },
+        'EXTRA CONTENT',
+        { type: 'text', id: 'xrcontxt', name: 'xrcontxt', label: 'Extra Content Text', value: 'More information of VIP stuff' },
+        { type: 'text', id: 'xrconfontsize', name: 'xrconfontsize', label: 'Extra Content Font Size', value: '14px' },
+        "JOIN NOW BUTTON",
+        { type: 'text', id: 'morebtntxt', name: 'morebtntxt', label: 'Button Text', value: 'Ill have a look' },
+        { type: 'color', id: 'morebtntxtcol', name: 'morebtntxtcol', label: 'Button Text Colour', value: '#FFFFFF' },
+        { type: 'color', id: 'morebtnbgcol', name: 'morebtnbgcol', label: 'Button Background Colour', value: '#3030a2' },
+        { type: 'text', id: 'morebtnfontsize', name: 'morebtnfontsize', label: 'Button Font Size', value: '15px' }
+    ],
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = {
+    bgcol: '${widget.bgcol}', // background colour
+    borcol: '${widget.borcol}', // border colour
+    headercol: '${widget.headercol}', // header colour 
+    headerfontsize: '${widget.headerfontsize}', // header font size  
+    concol: '${widget.concol}', // content colour 
+    confontsize: '${widget.confontsize}', // content font size 
+    headertxt1: '${widget.headertxt1.replace('\'', '\\\'')}', // header 1 txt
+    contxt1: '${widget.contxt1.replace('\'', '\\\'')}', // content 1 txt
+    yesbtntxt: '${widget.yesbtntxt.replace('\'', '\\\'')}', // yes button txt
+    yesbtntxtcol: '${widget.yesbtntxtcol}', // button txt colour
+    yesbtnbgcol: '${widget.yesbtnbgcol}', // button background colour
+    yesbtnfontsize: '${widget.yesbtnfontsize}', // button font size
+    yesbtnsmltxt: '${widget.yesbtnsmltxt.replace('\'', '\\\'')}', // yes button smaller txt
+    yesbtnsmlfontsize: '${widget.yesbtnsmlfontsize}', // button smaller text font size
+    nobtntxt: '${widget.nobtntxt.replace('\'', '\\\'')}', // no button txt
+    nobtntxtcol: '${widget.nobtntxtcol}', // button txt colour
+    nobtnbgcol: '${widget.nobtnbgcol}', // button background colour
+    nobtnfontsize: '${widget.nobtnfontsize}', // button font size
+    nobtnsmltxt: '${widget.nobtnsmltxt.replace('\'', '\\\'')}', // no button smaller txt
+    nobtnsmlfontsize: '${widget.nobtnsmlfontsize}', // button smaller text font size
+    headertxt2: '${widget.headertxt2.replace('\'', '\\\'')}', // header 2 txt
+    contxt2: '${widget.contxt2.replace('\'', '\\\'')}', // content 2 txt
+    jnbtntxt: '${widget.jnbtntxt.replace('\'', '\\\'')}', // join button txt
+    jnbtntxtcol: '${widget.jnbtntxtcol}', // button txt colour
+    jnbtnbgcol: '${widget.jnbtnbgcol}', // button background colour
+    jnbtnfontsize: '${widget.jnbtnfontsize}', // button font size
+    inborcol: '${widget.inborcol}', // input border colour
+    headertxt3: '${widget.headertxt3.replace('\'', '\\\'')}', // header 3 txt
+    contxt3: '${widget.contxt3.replace('\'', '\\\'')}', // content 3 txt
+    xrcontxt: '${widget.xrcontxt.replace('\'', '\\\'')}', // content 3 txt
+    xrconfontsize: '${widget.xrconfontsize}', //extra content font size
+    morebtntxt: '${widget.morebtntxt.replace('\'', '\\\'')}', // yes button txt
+    morebtntxtcol: '${widget.morebtntxtcol}', // button txt colour
+    morebtnbgcol: '${widget.morebtnbgcol}', // button background colour
+    morebtnfontsize: '${widget.morebtnfontsize}' // button font size
+  };
+  var elid = 'wto-widget--vipsignup--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--vipsignup').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-join { position: fixed; padding: 20px; margin: 5px; border: 2px solid "+ settings.borcol +"; border-radius: 6px; width: 310px; height: 300px; top: 170px; left: 170px; z-index: 9999; box-sizing: unset; background: "+ settings.bgcol +"; }",
+    ".wto_closebtn_not { font-size: 24px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; color: #968c8c; float: right; margin-top: -13px; margin-right: -7px; }",
+    ".wto-header { position: inherit; top: 217px; margin-left: 5px; font-size: "+ settings.headerfontsize +"; font-weight: bold; font-family: Verdana; width: 311px; color: "+ settings.headercol +"; margin: 0; line-height: 1.2; letter-spacing: 0; box-sizing: unset; }",
+    ".wto-content { position: inherit; margin-top: 89px; margin-left: 13px; font-size: "+ settings.confontsize +"; font-weight: bold; font-family: Verdana; width: 285px; color: "+ settings.concol +"; text-align: center; line-height: 1.7; letter-spacing: 0; box-sizing: unset; }",
+    ".wto-moreinfo { position: inherit; margin-top: 169px; margin-left: 133px; font-size: "+ settings.xrconfontsize +"; font-weight: bold; font-family: Verdana; width: 145px; color: "+ settings.concol +"; text-align: center; line-height: 1.7; letter-spacing: 0; box-sizing: unset; }",
+    "#wto-comlogo { position: inherit; height: 55px; width: 146px; z-index: 9999; margin-top: -47px; margin-left: -77px; }",
+    "#wto-yesjoin { width: 138px; height: 100px; border: none; border-radius: 9px; box-sizing: unset; position: absolute; bottom: 15px; background: "+ settings.yesbtnbgcol +"; color: "+ settings.yesbtntxtcol +"; padding: 8px; left: 18px; }",
+    "#wto-nojoin { width: 138px; height: 100px; border: none; border-radius: 9px; box-sizing: unset; position: absolute; bottom: 16px; left: 179px; background: "+ settings.nobtnbgcol +"; color: "+ settings.nobtntxtcol +"; box-shadow: 0px 3px 3px 0px grey; padding: 8px; }",
+    "#wto-answerno { font-size: "+ settings.nobtnfontsize +"; font-weight: bold; font-family: Verdana; line-height: 3em; margin: -61px; position: absolute; left: 115px; }",
+    "#wto-nextn { font-size: "+ settings.nobtnsmlfontsize +"; font-family: Verdana; line-height: 3em; position: absolute; left: 25px;}",
+    "#wto-answeryes { font-size: "+ settings.yesbtnfontsize +"; font-weight: bold; font-family: Verdana; line-height: 3em; margin: -59px; position: absolute; left: 105px; }",
+    "#wto-nexty { font-size: "+ settings.yesbtnsmlfontsize +"; font-family: Verdana; line-height: 3em; position: absolute; left: 9px; }",
+    ".wto-step2 { position: fixed; padding: 20px; margin: 5px; border: 2px solid "+ settings.borcol +"; border-radius: 6px; width: 310px; height: 300px; top: 171px; left: 582px; z-index: 9999; box-sizing: unset; background: "+ settings.bgcol +"; }",
+    "input { position: absolute; bottom: 76px; padding: 3px; height: 46px; width: 304px; border: 5px solid "+ settings.inborcol +"; border-radius: 8px; text-align: center; box-sizing: unset; margin-left: -5px; left: 16px; }",
+    "#wto-joinnow { position: absolute; bottom: 15px; padding: 3px; height: 50px; width: 313px; border: none; border-radius: 8px; text-align: center; background: "+ settings.jnbtnbgcol +"; color: "+ settings.jnbtntxtcol +"; font-size: "+ settings.jnbtnfontsize +"; font-weight: bold; font-family: Verdana; box-sizing: unset; margin-left: -5px; left: 16px; }",
+    ".wto-final { position: fixed; padding: 20px; margin: 5px; border: 2px solid "+ settings.borcol +"; border-radius: 6px; width: 310px; height: 300px; top: 171px; right: 170px; z-index: 9999; box-sizing: unset; background: "+ settings.bgcol +"; }",
+    "#wto-viplogo { position: absolute; height: 100px; width: 105px; margin-top: 200px; left: 12px }",
+    "#wto-more { position: absolute; bottom: 15px; padding: 2px; left: 137px; height: 59px; width: 190px; border: none; border-radius: 8px; text-align: center; background: "+ settings.morebtnbgcol +"; color: "+ settings.morebtntxtcol +"; font-size: "+ settings.morebtnfontsize +"; font-weight: bold; font-family: Verdana; box-sizing: unset; }"
+]);
+  
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget--vipsignup">\
+<div class="wto-join">\
+    <img id="wto-comlogo" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/logo.jpg">\
+    <span class="wto_closebtn_not">&times;</span>\
+    <div class="wto-header">'+ settings.headertxt1 +'</div>\
+    <div class="wto-content">'+ settings.contxt1 +'</div>\
+    <button type="button" id="wto-yesjoin"><p id="wto-answeryes">'+ settings.yesbtntxt +'</p><p id="wto-nexty">'+ settings.yesbtnsmltxt +'</p></button>\
+    <button type="button" id="wto-nojoin"><p id="wto-answerno">'+ settings.nobtntxt +'</p><p id="wto-nextn">'+ settings.nobtnsmltxt +'</p></button>\
+</div>\
+<div class="wto-step2">\
+    <img id="wto-comlogo" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/logo.jpg">\
+    <span class="wto_closebtn_not">&times;</span>\
+    <div class="wto-header">'+ settings.headertxt2 +'</div>\
+    <div class="wto-content">'+ settings.contxt2 +'</div>\
+    <input type="email" id="wto-email" placeholder="Enter Email">\
+    <button type="button" id="wto-joinnow">'+ settings.jnbtntxt +'</button>\
+</div>\
+<div class="wto-final">\
+    <img id="wto-comlogo" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/logo.jpg">\
+    <span class="wto_closebtn_not">&times;</span>\
+    <div class="wto-header">'+ settings.headertxt3 +'</div>\
+    <div class="wto-content">'+ settings.contxt3 +'</div>\
+    <div class="wto-moreinfo">'+ settings.xrcontxt +'</div>\
+    <img id="wto-viplogo" src="https://c.webtrends-optimize.com/acs/accounts/2cb00c79-4e9d-44ea-9ca0-bb1338a5998c/manager/viplogo.png">\
+    <button type="button" id="wto-more">'+ settings.morebtntxt +'</button>\
+</div>\
+</div>\
+';
+  el.outerHTML = elhtml;
+
+  })();
+  //!-##${widget.widgetType}--END##`;
+                
+                return str;
+            }
+        },
+        'widget 18': {
+    friendlyName: 'Widget 18',
+    description: 'After purchase promo',
+    fields: [
+        'BACKGROUND COLOUR',
+        { type: 'background-image', id: 'bgcol', name: 'bgcol', label: 'Background Colour', value: 'linear-gradient(-45deg, #120da1, #1703fc, #120da1, #1703fc, #120da1, #1703fc)'},
+        'BIG HEADER',
+        { type: 'text', id: 'bigheadertxt', name: 'bigheadertxt', label: 'Big Header Text', value: 'Want 20% off your next order?' },
+        { type: 'color', id: 'bigheadercol', name: 'bigheadercol', label: 'Big Header Colour', value: '#ffffff' },
+        { type: 'text', id: 'bigheaderfontsize', name: 'bigheaderfontsize', label: 'Big Header Font Size', value: '30px' },
+        'SMALLER HEADER',
+        { type: 'text', id: 'smlheadertxt', name: 'smlheadertxt', label: 'Smaller Header Text', value: 'Thank you for your purchase! ' },
+        { type: 'color', id: 'smlheadercol', name: 'smlheadercol', label: 'Smaller Header Colour', value: '#ffffff' },
+        { type: 'text', id: 'smlheaderfontsize', name: 'smlheaderfontsize', label: 'Smaller Header Font Size', value: '15px' },
+        'CONTENT',
+        { type: 'text', id: 'contxt', name: 'contxt', label: 'Content Text', value: 'Tell us about your purchase experience and we will give you a 20% discount code immediately.' },
+        { type: 'color', id: 'concol', name: 'concol', label: 'Content Colour', value: '#ffffff' },
+        { type: 'text', id: 'confontsize', name: 'confontsize', label: 'Content Font Size', value: '13px' },
+        'BUTTON',
+        { type: 'text', id: 'btntxt', name: 'btntxt', label: 'Button Text', value: 'YES, I WANT THE DISCOUNT!' },
+        { type: 'color', id: 'btntxtcol', name: 'btntxtcol', label: 'Button Text Colour', value: '#120da1' },
+        { type: 'color', id: 'btnbgcol', name: 'btnbgcol', label: 'Button Background Colour', value: '#ffffff' },
+        { type: 'text', id: 'btnfontsize', name: 'btnfontsize', label: 'Button Font Size', value: '12px' }
+    ],
+  
+    js_build: function(widget){
+        var uniqueID = Date.now();
+        var str = `
+        
+  //!-##${widget.widgetType}--START##
+  // ${JSON.stringify(widget)}
+  (function(){
+  var settings = {
+    bigheaderfontsize: '${widget.bigheaderfontsize}', // header font size  
+    bigheadertxt: '${widget.bigheadertxt.replace('\'', '\\\'')}', // header txt
+    bigheadercol: '${widget.bigheadercol}', // header colour 
+    smlheaderfontsize: '${widget.smlheaderfontsize}', // header font size  
+    smlheadertxt: '${widget.smlheadertxt.replace('\'', '\\\'')}', // header txt
+    smlheadercol: '${widget.smlheadercol}', // header colour 
+    confontsize: '${widget.confontsize}', //  content font size  
+    contxt: '${widget.contxt.replace('\'', '\\\'')}', // content txt
+    concol: '${widget.concol}', // content colour
+    btntxt : '${widget.btntxt.replace('\'', '\\\'')}', // button txt
+    btntxtcol: '${widget.btntxtcol}', // button txt colour
+    btnbgcol: '${widget.btnbgcol}', // button colour
+    btnfontsize: '${widget.btnfontsize}', // button font size
+    bgcol: '${widget.bgcol}' // background colour   
+  };
+  var elid = 'wto-widget--afpurchasepromo--${uniqueID}';
+  // Remove if exists - ensures no duplicates
+  document.querySelectorAll('.wto-widget--afpurchasepromo').forEach(function(node){
+  node.parentNode.removeChild(node);
+  });
+  var css={add:function(c, id){if(c instanceof Array){c=c.join(' ')}var a=document.getElementsByTagName("head")[0],b=document.createElement('style');b.type="text/css";if(id){b.id=id;}if(b.styleSheet){b.styleSheet.cssText=c}else{b.appendChild(document.createTextNode(c))}a.appendChild(b)}, del:function(id){var el=document.getElementById(id); if(el){el.parentNode.removeChild(el)}}};
+  css.add([
+    ".wto-widget--afpurchasepromo { position: fixed; top: 57px; left: 550px; margin: 5px; z-index: 9999; box-sizing: unset; padding: 10px; border-radius: 21px; width: 400px; height: 450px; background-image: "+ settings.bgcol +"; }",
+    ".wto_closebtn_not { font-size: 24px; line-height: 20px; cursor: pointer; transition: 0.3s; z-index: 9999; color: #ffffff; float: right; margin-top: 2px; margin-right: 10px; }",
+    "wto_closebtn_not:hover { color: #45474a; }",
+    ".wto-smlheader { position: absolute; text-align: center; margin: 0px; top: 59px; font-size: "+ settings.smlheaderfontsize +"; font-weight: bold; font-family: Georgia; width: 400px; margin-left: 2px; z-index: 9999; line-height: 1.1; letter-spacing: 0; color: "+ settings.smlheadercol +"; box-sizing: unset; }",
+    ".wto-bigheader { position: absolute; text-align: center; margin: 0px; top: 120px; font-size: "+ settings.bigheaderfontsize +"; font-weight: bold; font-family: Georgia; margin-left: 37px; width: 331px; z-index: 9999; line-height: 1.9; letter-spacing: 0; color: "+ settings.bigheadercol +"; box-sizing: unset; }",
+    ".wto-content { z-index: 9999; top: 264px; margin-left: 75px; width: 245px; position: absolute; text-align: center; font-size: "+ settings.confontsize +"; font-family: Georgia; color: "+ settings.concol +"; line-height: 1.8; letter-spacing: 0; box-sizing: unset; }",
+    "#wto-promocodebtn { z-index: 9999; bottom: 50px; margin-left: 65px; width: 270px; height: 42px; border: none; border-radius: 8px; position: absolute; text-align: center; font-size: "+ settings.btnfontsize +"; font-family: Georgia; color: "+ settings.btntxtcol +"; background-color: "+ settings.btnbgcol +"; line-height: 1.6; letter-spacing: 0; box-sizing: unset; }"
+]);
+  
+var body = document.getElementsByTagName('body')[0];
+var el = document.createElement('div');
+body.insertAdjacentElement('afterBegin', el);
+var elhtml = '\<div id="'+ elid +'" class="wto-widget--afpurchasepromo">\
+<span class="wto_closebtn_not">&times;</span>\
+<div class="wto-smlheader">'+ settings.smlheadertxt +'</div>\
+<div class="wto-bigheader">'+ settings.bigheadertxt +'</div>\
+<div class="wto-content">'+ settings.contxt +'</div>\
+<button type="button" id="wto-promocodebtn">'+ settings.btntxt +'</button>\
+</div>\
+';
+  el.outerHTML = elhtml;
   })();
   //!-##${widget.widgetType}--END##`;
                 
